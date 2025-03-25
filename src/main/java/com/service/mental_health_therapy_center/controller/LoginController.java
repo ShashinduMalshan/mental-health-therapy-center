@@ -10,7 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,9 +21,10 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    public ComboBox roleComboBox;
-    public Button registorButton;
-    public AnchorPane loginAnc;
+    public ComboBox <String>  roleComboBox;
+    public VBox loginAnc;
+    public StackPane loginpane;
+    public AnchorPane loginAncerPane;
     @FXML
     private Button loginButton;
 
@@ -30,42 +34,48 @@ public class LoginController implements Initializable {
     @FXML
     private TextField usernameField;
 
+     String username;
+     String password;
+     String role ;
+
     LoginBo loginBo = new LoginBoImpl(); // Business logic layer instance
 
-    @FXML
-    void handleLoginButtonAction(ActionEvent event) {
-        String username = usernameField.getText().trim();
-        String password = passwordField.getText().trim();
-        String role = roleComboBox.getValue().toString();
 
-        System.out.println(username+" "+password+" "+role);
 
+    public void loginAction(MouseEvent mouseEvent) throws IOException {
+        username = usernameField.getText().trim();
+        password = passwordField.getText().trim();
+        role = roleComboBox.getValue();
 
         // Encrypt password before saving
-        LoginDto loginDto = new LoginDto(username, password,role);
+        LoginDto loginDto = new LoginDto(username, password, role);
 
         if (loginBo.authenticateUser(loginDto)) {
-            System.out.println("login success");
-        }
-        else {
-            System.out.println("login failed");
-        }
+            System.out.println("Login success");
 
+            FXMLLoader load = new FXMLLoader(getClass().getResource("/view/DashBord.fxml"));
+            AnchorPane dashboard = load.load();
+
+            DashboardController dashboardController = load.getController();
+            dashboardController.setLabel(username, role);
+
+            loginAncerPane.getChildren().clear();
+            loginAncerPane.getChildren().add(dashboard);
+
+
+        } else {
+            System.out.println("Login failed");
+        }
 
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        roleComboBox.getItems().addAll("Admin", "Reception");
+        roleComboBox.getItems().addAll("Admin", "Receptionist");
         roleComboBox.setValue("Admin");
-}
-
-    public void handleregistorButtonAction(ActionEvent actionEvent) throws IOException {
-        loginAnc.getChildren().clear();
-        AnchorPane load = FXMLLoader.load(getClass().getResource("/view/Register.fxml"));
-        loginAnc.getChildren().add(load);
-
-
     }
+
+
 }
+

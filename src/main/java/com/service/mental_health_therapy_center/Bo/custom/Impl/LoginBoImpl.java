@@ -21,11 +21,14 @@ public class LoginBoImpl implements LoginBo {
 
         List<User> userByUsername = loginDao.getUserByUsername(loginDto);
 
-
-
-        if (loginDto.getPassword().equals(userByUsername.get(0).getPassword())) {
+        for (User user : userByUsername) {
+             if (loginDto.getPassword().equals(user.getPassword())&&loginDto.getRole().equals(user.getRole())) {
             return true;
         }
+        }
+
+
+
         return false;
 
     }

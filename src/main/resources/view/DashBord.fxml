@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="DashAnc" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../UICss/DashBord.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.service.mental_health_therapy_center.controller.DashboardController">
+
+    <HBox prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <!-- Navigation Sidebar -->
+        <VBox prefWidth="272.0" styleClass="navigation-sidebar" HBox.hgrow="NEVER">
+
+            <children>
+                <!-- Logo and Title -->
+                <VBox styleClass="nav-header">
+                    <children>
+                        <Label styleClass="nav-title" text="Healing Minds" />
+                        <Label styleClass="nav-subtitle" text="Mental Health Therapy Center" />
+                        <VBox prefHeight="45.0" prefWidth="100.0" />
+                    </children>
+                </VBox>
+
+                <!-- Navigation Buttons -->
+                <VBox spacing="10" VBox.vgrow="ALWAYS">
+                    <HBox alignment="CENTER" styleClass="nav-button-container">
+                        <Button styleClass="nav-button, active" text="Dashboard">
+                            <font>
+                                <Font name="System Bold Italic" size="13.0" />
+                            </font>
+                        </Button>
+                    </HBox>
+                    <HBox alignment="CENTER" styleClass="nav-button-container">
+                        <Button styleClass="nav-button" text="Patients" />
+                    </HBox>
+                    <HBox alignment="CENTER" styleClass="nav-button-container">
+                        <Button styleClass="nav-button" text="Appointments" />
+                    </HBox>
+                    <HBox alignment="CENTER" styleClass="nav-button-container">
+                        <Button styleClass="nav-button" text="Therapists" />
+                    </HBox>
+                    <HBox alignment="CENTER" styleClass="nav-button-container">
+                        <Button styleClass="nav-button" text="Treatment Plans" />
+                    </HBox>
+                    <HBox alignment="CENTER" styleClass="nav-button-container">
+                        <Button styleClass="nav-button" text="Analytics" />
+                    </HBox>
+                    <HBox alignment="CENTER" styleClass="nav-button-container">
+                        <Button onMouseClicked="#adminBtnOnAction" styleClass="nav-button" text="Admin" />
+                    </HBox>
+               <HBox alignment="CENTER" layoutX="10.0" layoutY="382.0" styleClass="nav-button-container">
+                  <children>
+                     <Button fx:id="logoutButton" onMouseClicked="#logoutButtonAction" styleClass="nav-button, logout-button" text="Logout" />
+                  </children>
+               </HBox>
+                </VBox>
+
+                <!-- Logout Button -->
+                <HBox alignment="CENTER" styleClass="nav-button-container" />
+
+                <!-- User Profile Section -->
+                <VBox styleClass="nav-footer">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="profile-section">
+                            <children>
+                                <Circle fill="#e0e0e0" radius="20" styleClass="profile-image" />
+                                <VBox>
+                                    <children>
+                                        <Label fx:id="userNameLbl" styleClass="profile-name" text="Dr. Sarah Johnson" />
+                                        <Label fx:id="roleLbl" styleClass="profile-role" text="Lead Therapist" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+      <VBox HBox.hgrow="ALWAYS">
+         <children>
+            <AnchorPane fx:id="loadAnc" prefHeight="844.0" prefWidth="902.0" stylesheets="@../../../../../../../../IdeaProjects/Vehicle%20License%20Point%20System/src/main/resources/CSS/dash.css" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+    </HBox>
+</AnchorPane>

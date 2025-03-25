@@ -1,0 +1,135 @@
+/* Main Application Background */
+.root {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* StackPane styling */
+.stack-pane {
+    -fx-background-color: transparent;
+}
+
+/* Main Login Container */
+#loginAnc {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 10);
+    -fx-max-width: 450px;
+    -fx-min-width: 350px;
+    -fx-alignment: center;
+}
+
+/* Login Header */
+#LoginHeader {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4A4A4A;
+    -fx-padding: 0 0 15px 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 2, 0, 0, 1);
+    -fx-alignment: center;
+}
+
+/* Label Styling */
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+/* Text Fields */
+.text-field, .password-field {
+    -fx-background-color: #F5F5F5;
+    -fx-background-radius: 8px;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 8px;
+    -fx-padding: 12px 15px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #AAAAAA;
+    -fx-text-fill: #333333;
+    -fx-max-width: infinity;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-background-color: white;
+    -fx-border-color: #6A82FB;
+    -fx-effect: dropshadow(gaussian, rgba(106, 130, 251, 0.2), 4, 0, 0, 0);
+}
+
+/* Combo Box */
+.combo-box {
+    -fx-background-color: #F5F5F5;
+    -fx-background-radius: 8px;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 8px;
+    -fx-padding: 5px;
+    -fx-max-width: infinity;
+}
+
+.combo-box .list-cell {
+    -fx-padding: 8px 15px;
+    -fx-text-fill: #333333;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 2);
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #F0F5FF;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #E0E8FF;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #6A82FB;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #5A72EB;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0, 0, 3);
+}
+
+.button:pressed {
+    -fx-background-color: #4A62DB;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
+}
+
+/* Layout Containers */
+.vbox {
+    -fx-spacing: 15;
+    -fx-alignment: center;
+    -fx-fill-width: true;
+}
+
+.h-box {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+/* Make form fields expand to fill available width */
+#usernameField, #passwordField, #roleComboBox {
+    -fx-max-width: infinity;
+}
+
+/* Add subtle animation for interactive elements */
+.text-field:hover, .password-field:hover, .combo-box:hover {
+    -fx-background-color: #FAFAFA;
+}
+
+/* Add responsive design for different window sizes */
+@media screen and (max-width: 500px) {
+    #loginAnc {
+        -fx-max-width: 90%;
+    }
+}

@@ -72,7 +72,7 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        role.getItems().addAll("Admin", "Reception");
+        role.getItems().addAll("Admin", "Receptionist");
         role.setValue("Admin");
     }
 }
