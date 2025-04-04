@@ -7,9 +7,8 @@ import java.util.ArrayList;
 public interface AdminBo {
 
     ArrayList<UserDto> loadTable();
+    boolean save(String username,String password,String role);
 
-
-    boolean save(String username, String password, String role);
 }
 
 

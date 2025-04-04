@@ -113,10 +113,11 @@ public class AdminController implements Initializable {
 
         boolean isValidName = username.matches(namePattern);
         boolean isValidPassword =/* password.matches(passwordPattern)*/true;
-        boolean isValidRole = role.equals("Admin") || role.equals("Receptionist");
+        boolean isValidRole = "Admin".equals(roleComboBox.getValue()) || "Receptionist".equals(roleComboBox.getValue());
 
         nameField.setStyle(nameField.getStyle() + ";-fx-border-color: #7367F0;");
         passwordField.setStyle(passwordField.getStyle() + ";-fx-border-color: #7367F0;");
+        roleComboBox.setStyle(roleComboBox.getStyle() + ";-fx-border-color: #7367F0;");
 
 
 
@@ -129,7 +130,7 @@ public class AdminController implements Initializable {
         }
 
          if (!isValidRole) {
-            passwordField.setStyle(passwordField.getStyle() + ";-fx-border-color: red;");
+            roleComboBox.setStyle(roleComboBox.getStyle() + ";-fx-border-color: red;");
         }
 
          if (isValidName&&isValidPassword&&isValidRole) {
