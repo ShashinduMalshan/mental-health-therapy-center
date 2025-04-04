@@ -37,11 +37,18 @@ public class LoginDaoImpl implements LoginDao {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
+        try {
 
-         session.persist(login);
-            System.out.println(login.toString());
-            transaction.commit();
-            return true;
+        session.persist(login);
+        System.out.println(login.toString());
+        transaction.commit();
+        return true;
 
+        } catch (Exception e) {
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 }

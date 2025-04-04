@@ -1,0 +1,72 @@
+/* General Table Styling */
+.table-view {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #e0e0e0; /* Light border around table */
+    -fx-border-radius: 8px; /* Rounded corners */
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+}
+
+/* Header Styling */
+.table-view .column-header-background {
+    -fx-background-color: #f3f4f6; /* Light gray header background */
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1px 0; /* Bottom border only */
+    -fx-border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Dark text */
+    -fx-padding: 8px 4px;
+}
+
+/* Row Styling */
+.table-view .table-row-cell:odd {
+    -fx-background-color: #fafafa; /* Very light gray for odd rows */
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #ffffff; /* White for even rows */
+}
+
+/* Cell Styling */
+.table-view .table-cell {
+    -fx-padding: 8px 4px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #666666; /* Medium gray text for cells */
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1px 0; /* Bottom border only */
+}
+
+/* Hover Effect */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #e6f2ff; /* Light blue on hover */
+}
+
+/* Selected Row Styling */
+.table-view .table-cell:selected,
+.table-view .table-row-cell:selected {
+    -fx-background-color: #cce4ff; /* Blue background for selected rows */
+    -fx-text-fill: #333333; /* Dark text on selection */
+}
+
+/* Checkbox Styling */
+.table-view .table-cell .check-box {
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-background-color: #ffffff;
+}
+
+/* Scroll Bar Styling */
+.table-view .scroll-bar .thumb {
+    -fx-background-color: #cccccc; /* Light gray scrollbar thumb */
+    -fx-background-radius: 5px;
+}
+
+/* Placeholder Text */
+.table-view .placeholder {
+    -fx-text-fill: #999999;
+    -fx-font-style: italic;
+}

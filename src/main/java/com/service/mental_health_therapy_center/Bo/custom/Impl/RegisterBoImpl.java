@@ -15,8 +15,6 @@ public class RegisterBoImpl implements RegisterBo {
 
     @Override
      public boolean registerUser(String username, String password, String roleName) {
-         Session session = FactoryConfiguration.getInstance().getSession();
-         Transaction transaction = session.beginTransaction();
 
          user.setName(username);
          user.setPassword(password);

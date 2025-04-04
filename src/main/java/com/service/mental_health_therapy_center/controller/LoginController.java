@@ -47,7 +47,7 @@ public class LoginController implements Initializable {
         password = passwordField.getText().trim();
         role = roleComboBox.getValue();
 
-        // Encrypt password before saving
+
         LoginDto loginDto = new LoginDto(username, password, role);
 
         if (loginBo.authenticateUser(loginDto)) {
@@ -61,10 +61,13 @@ public class LoginController implements Initializable {
 
             loginAncerPane.getChildren().clear();
             loginAncerPane.getChildren().add(dashboard);
+            new Alert(Alert.AlertType.CONFIRMATION, "Login Success", ButtonType.OK).show();
+
 
 
         } else {
             System.out.println("Login failed");
+            new Alert(Alert.AlertType.ERROR, "Login failed").show();
         }
 
 
@@ -74,6 +77,8 @@ public class LoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         roleComboBox.getItems().addAll("Admin", "Receptionist");
         roleComboBox.setValue("Admin");
+
+
     }
 
 

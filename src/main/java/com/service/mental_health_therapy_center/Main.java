@@ -1,9 +1,14 @@
 package com.service.mental_health_therapy_center;
 
+import com.service.mental_health_therapy_center.Dao.Custom.Impl.AdminDaoImpl;
+import com.service.mental_health_therapy_center.configuration.FactoryConfiguration;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
 
@@ -16,9 +21,10 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
+
+
+
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
+    public static void main(String[] args){launch();}
 }

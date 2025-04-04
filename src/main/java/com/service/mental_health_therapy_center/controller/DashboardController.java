@@ -35,14 +35,14 @@ public class DashboardController {
         this.role = role;
         userNameLbl.setText(userName);
         roleLbl.setText(role);
+
     }
 
     public void logoutButtonAction(MouseEvent mouseEvent) {navigateTo("/view/login.fxml");}
 
     public void adminBtnOnAction(MouseEvent mouseEvent) {navigateTo("/view/Admin.fxml");}
 
-
-      public void navigateTo(String fxmlPath) {
+    public void navigateTo(String fxmlPath) {
 
         try {
             loadAnc.getChildren().clear();
@@ -57,7 +57,9 @@ public class DashboardController {
             AnchorPane.setBottomAnchor(load, 0.0);
             AnchorPane.setLeftAnchor(load, 0.0);
 
-            loadAnc.getChildren().add(load);
+            loadAnc
+                    .getChildren().add(load);
+
         } catch (IOException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Fail to load page!").show();
