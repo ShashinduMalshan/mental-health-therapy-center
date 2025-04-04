@@ -80,7 +80,7 @@
                </children>
             </VBox>
             <HBox alignment="CENTER" maxWidth="Infinity" prefHeight="232.0" prefWidth="822.0" spacing="15" />
-            <TableView fx:id="userTable" maxWidth="Infinity" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e9ecef;" styleClass="futuristic-table" stylesheets="@../UICss/tableUI.css" VBox.vgrow="ALWAYS">
+            <TableView fx:id="userTable" maxWidth="Infinity" onMouseClicked="#OnClicked" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #e9ecef;" styleClass="futuristic-table" stylesheets="@../UICss/tableUI.css" VBox.vgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="colId" prefWidth="100" text="ID" />
                   <TableColumn fx:id="colName" prefWidth="250" text="Name" />

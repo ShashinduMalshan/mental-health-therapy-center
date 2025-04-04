@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,14 +23,13 @@ public class AdminController implements Initializable {
 
 
     public TableView <UserTm> userTable;
-    public TableColumn <UserTm,String> colName;
+    public TableColumn <UserTm, String> colName;
     public TableColumn <UserTm,Integer>colId;
     public TableColumn <UserTm,String> colPassword;
     public TableColumn <UserTm,String> colRole;
     public PasswordField passwordField;
     public TextField nameField;
-    public TextField roleField;
-    public ComboBox roleComboBox;
+    public ComboBox <String> roleComboBox;
 
     AdminBo adminBo = new AdminBoImpl();
 
@@ -90,13 +90,61 @@ public class AdminController implements Initializable {
 
 
 
-    public void updateBtnOnAction(ActionEvent actionEvent) {
-    }
+
 
     public void deleteBtnOnAction(ActionEvent actionEvent) {
     }
 
     public void searchFieldBtnAction(ActionEvent actionEvent) {
+    }
+
+    public void updateBtnOnAction(ActionEvent actionEvent) {
+
+        String Id = userTable.getSelectionModel().getSelectedItem().getId();
+        String username = nameField.getText();
+        String password = PasswordUtil.encryptPassword(passwordField.getText());
+        String role = (String) roleComboBox.getValue();
+
+        String namePattern = "^[A-Za-z ]+$";
+        String passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@#$%^&+=!]{6,}$";
+
+
+
+        boolean isValidName = username.matches(namePattern);
+        boolean isValidPassword =/* password.matches(passwordPattern)*/true;
+        boolean isValidRole = "Admin".equals(roleComboBox.getValue()) || "Receptionist".equals(roleComboBox.getValue());
+
+        nameField.setStyle(nameField.getStyle() + ";-fx-border-color: #7367F0;");
+        passwordField.setStyle(passwordField.getStyle() + ";-fx-border-color: #7367F0;");
+        roleComboBox.setStyle(roleComboBox.getStyle() + ";-fx-border-color: #7367F0;");
+
+
+
+         if (!isValidName) {
+            nameField.setStyle(nameField.getStyle() + ";-fx-border-color: red;");
+        }
+
+         if (!isValidPassword) {
+            passwordField.setStyle(passwordField.getStyle() + ";-fx-border-color: red;");
+        }
+
+         if (!isValidRole) {
+            roleComboBox.setStyle(roleComboBox.getStyle() + ";-fx-border-color: red;");
+        }
+
+         if (isValidName&&isValidPassword&&isValidRole) {
+            boolean isUpdate = adminBo.update(Id, username, password, role);
+
+             if(isUpdate){
+                refresh();
+             new Alert(Alert.AlertType.INFORMATION, "User Update").show();
+             }
+         }else {
+                new Alert(Alert.AlertType.ERROR, "Fail to Update User...!").show();
+             }
+
+
+
     }
 
     public void saveBtnOnAction(ActionEvent actionEvent) {
@@ -144,6 +192,19 @@ public class AdminController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, "Fail to save User...!").show();
              }
 
+
+
+    }
+
+    public void OnClicked(MouseEvent mouseEvent) {
+
+        UserTm userTm = userTable.getSelectionModel().getSelectedItem();
+
+        if (userTm != null) {
+            nameField.setText(userTm.getName());
+            passwordField.setText(userTm.getPassword());
+            roleComboBox.setValue(userTm.getRole());
+        }
 
 
     }

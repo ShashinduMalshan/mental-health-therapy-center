@@ -5,7 +5,6 @@ import com.service.mental_health_therapy_center.configuration.FactoryConfigurati
 import com.service.mental_health_therapy_center.dto.LoginDto;
 import com.service.mental_health_therapy_center.entity.User;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -30,25 +29,23 @@ public class LoginDaoImpl implements LoginDao {
     }
 
 
+    @Override
+    public List<LoginDto> getAll() {
+        return List.of();
+    }
 
+    @Override
+    public boolean save(LoginDto user) {
+        return false;
+    }
 
-    public boolean save(User login) {
+    @Override
+    public boolean update(User user) {
+        return false;
+    }
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        try {
-
-        session.persist(login);
-        System.out.println(login.toString());
-        transaction.commit();
-        return true;
-
-        } catch (Exception e) {
-            transaction.rollback();
-            return false;
-        } finally {
-            session.close();
-        }
+    @Override
+    public String getLastId() {
+        return "";
     }
 }

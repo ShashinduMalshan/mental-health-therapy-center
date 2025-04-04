@@ -29,10 +29,18 @@ public class AdminDaoImpl implements AdminDao {
             transaction.commit();
 
             return true;
-
-
-
     }
+
+    public boolean update(User user) {
+            Session session = FactoryConfiguration.getInstance().getSession();
+            Transaction transaction = session.beginTransaction();
+
+            session.merge(user);
+            transaction.commit();
+
+            return true;
+    }
+
 
     public String getLastId() {
 

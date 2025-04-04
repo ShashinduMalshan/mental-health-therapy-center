@@ -3,6 +3,7 @@ package com.service.mental_health_therapy_center.Bo.custom.Impl;
 import com.service.mental_health_therapy_center.Bo.custom.AdminBo;
 import com.service.mental_health_therapy_center.Dao.Custom.AdminDao;
 import com.service.mental_health_therapy_center.Dao.Custom.Impl.AdminDaoImpl;
+import com.service.mental_health_therapy_center.Dao.DAOFactory;
 import com.service.mental_health_therapy_center.dto.UserDto;
 import com.service.mental_health_therapy_center.entity.User;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class AdminBoImpl implements AdminBo {
 
-    AdminDao adminDao = new AdminDaoImpl();
+    AdminDao adminDao = (AdminDao) DAOFactory.getInstance().getDAOType(DAOFactory.DAOType.ADMIN);
     User user = new User();
 
 
@@ -35,7 +36,7 @@ public class AdminBoImpl implements AdminBo {
 
     public boolean save(String username, String password, String role) {
 
-        user.setId(getNextId());
+         user.setId(getNextId());
          user.setName(username);
          user.setPassword(password);
          user.setRole(role);
@@ -45,6 +46,16 @@ public class AdminBoImpl implements AdminBo {
         return adminDao.save(user);
 
     }
+
+    public boolean update(String Id, String username, String password, String role) {
+
+         user.setId(Id);
+         user.setName(username);
+         user.setPassword(password);
+         user.setRole(role);
+        return adminDao.update(user);
+    }
+
 
 
       public String getNextId(){
