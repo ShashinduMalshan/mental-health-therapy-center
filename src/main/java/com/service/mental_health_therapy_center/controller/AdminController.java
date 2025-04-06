@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
@@ -30,6 +31,7 @@ public class AdminController implements Initializable {
     public PasswordField passwordField;
     public TextField nameField;
     public ComboBox <String> roleComboBox;
+    public Button resetBtn;
 
     AdminBo adminBo = new AdminBoImpl();
 
@@ -88,22 +90,36 @@ public class AdminController implements Initializable {
 
     }
 
-
-
-
-
     public void deleteBtnOnAction(ActionEvent actionEvent) {
+
+        String Id = userTable.getSelectionModel().getSelectedItem().getId();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.YES) {
+
+            boolean isDelete = adminBo.delete(Id);
+
+             if(isDelete){
+                refresh();
+                new Alert(Alert.AlertType.INFORMATION, "User Delete").show();
+             }else {
+                new Alert(Alert.AlertType.ERROR, "Fail to Delete User...!").show();
+             }
+        }
+
+
     }
 
-    public void searchFieldBtnAction(ActionEvent actionEvent) {
-    }
+    public void searchFieldBtnAction(ActionEvent actionEvent) {}
 
     public void updateBtnOnAction(ActionEvent actionEvent) {
 
         String Id = userTable.getSelectionModel().getSelectedItem().getId();
         String username = nameField.getText();
         String password = PasswordUtil.encryptPassword(passwordField.getText());
-        String role = (String) roleComboBox.getValue();
+        String role = roleComboBox.getValue();
 
         String namePattern = "^[A-Za-z ]+$";
         String passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@#$%^&+=!]{6,}$";
@@ -152,7 +168,7 @@ public class AdminController implements Initializable {
 
         String username = nameField.getText();
         String password = PasswordUtil.encryptPassword(passwordField.getText());
-        String role = (String) roleComboBox.getValue();
+        String role = roleComboBox.getValue();
 
         String namePattern = "^[A-Za-z ]+$";
         String passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@#$%^&+=!]{6,}$";
@@ -208,4 +224,14 @@ public class AdminController implements Initializable {
 
 
     }
+
+    public void resetBtnOnAction(ActionEvent actionEvent) {
+
+        refresh();
+        nameField.setText("");
+        passwordField.setText("");
+        roleComboBox.setPromptText("Select Role");
+
+    }
 }
+

@@ -41,6 +41,17 @@ public class AdminDaoImpl implements AdminDao {
             return true;
     }
 
+    @Override
+    public boolean delete(String Id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        User user = session.get(User.class, Id);
+
+        session.remove(user);
+        transaction.commit();
+        return true;
+    }
 
     public String getLastId() {
 

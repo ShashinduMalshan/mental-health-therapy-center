@@ -9,8 +9,9 @@ import java.util.List;
 public interface CrudDao<T> {
 
     List<T> getAll();
-    boolean save(T user);
-    boolean update(User user);
+    boolean save(T dto);
+    boolean update(User dto);
+    boolean delete(String Id);
     String getLastId();
 
 }

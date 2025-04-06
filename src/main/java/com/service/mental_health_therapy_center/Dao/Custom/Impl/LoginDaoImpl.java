@@ -45,6 +45,11 @@ public class LoginDaoImpl implements LoginDao {
     }
 
     @Override
+    public boolean delete(String Id) {
+        return false;
+    }
+
+    @Override
     public String getLastId() {
         return "";
     }

@@ -55,6 +55,9 @@ public class AdminBoImpl implements AdminBo {
          user.setRole(role);
         return adminDao.update(user);
     }
+    public boolean delete(String Id){
+        return adminDao.delete(Id);
+    }
 
 
 

@@ -23,7 +23,6 @@ public class LoginController implements Initializable {
 
     public ComboBox <String>  roleComboBox;
     public VBox loginAnc;
-    public StackPane loginpane;
     public AnchorPane loginAncerPane;
     @FXML
     private Button loginButton;
@@ -63,9 +62,7 @@ public class LoginController implements Initializable {
             loginAncerPane.getChildren().add(dashboard);
             new Alert(Alert.AlertType.CONFIRMATION, "Login Success", ButtonType.OK).show();
 
-
-
-        } else {
+        }else {
             System.out.println("Login failed");
             new Alert(Alert.AlertType.ERROR, "Login failed").show();
         }

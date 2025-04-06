@@ -9,6 +9,8 @@ public interface AdminBo {
     ArrayList<UserDto> loadTable();
     boolean save(String username,String password,String role);
     boolean update(String Id, String username, String password, String role);
+    boolean delete(String Id);
+
 
 
 }
