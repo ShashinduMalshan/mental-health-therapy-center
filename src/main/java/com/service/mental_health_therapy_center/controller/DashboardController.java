@@ -41,6 +41,10 @@ public class DashboardController {
 
     public void adminBtnOnAction(MouseEvent mouseEvent) {navigateTo("/view/Admin.fxml");}
 
+    public void therapistsBtnOnAction(MouseEvent mouseEvent) {navigateTo("/view/Therapist.fxml");}
+
+    public void PatientsOnAction(MouseEvent mouseEvent) {navigateTo("/view/Patient.fxml");}
+
     public void navigateTo(String fxmlPath) {
 
         try {
@@ -86,5 +90,7 @@ public class DashboardController {
             new Alert(Alert.AlertType.ERROR, "Fail to load page!").show();
         }
     }
+
+
 
 }

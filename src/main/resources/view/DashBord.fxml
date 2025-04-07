@@ -35,13 +35,13 @@
                         </Button>
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button styleClass="nav-button" text="Patients" />
+                        <Button onMouseClicked="#PatientsOnAction" styleClass="nav-button" text="Patients" />
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
                         <Button styleClass="nav-button" text="Appointments" />
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button styleClass="nav-button" text="Therapists" />
+                        <Button onMouseClicked="#therapistsBtnOnAction" styleClass="nav-button" text="Therapists" />
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
                         <Button styleClass="nav-button" text="Treatment Plans" />
@@ -82,7 +82,7 @@
         </VBox>
       <VBox HBox.hgrow="ALWAYS">
          <children>
-            <AnchorPane fx:id="loadAnc" prefHeight="844.0" prefWidth="902.0" stylesheets="@../../../../../../../../IdeaProjects/Vehicle%20License%20Point%20System/src/main/resources/CSS/dash.css" VBox.vgrow="ALWAYS" />
+            <AnchorPane fx:id="loadAnc" prefHeight="844.0" prefWidth="902.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
     </HBox>

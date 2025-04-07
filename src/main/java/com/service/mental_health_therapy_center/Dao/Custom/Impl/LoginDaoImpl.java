@@ -3,6 +3,7 @@ package com.service.mental_health_therapy_center.Dao.Custom.Impl;
 import com.service.mental_health_therapy_center.Dao.Custom.LoginDao;
 import com.service.mental_health_therapy_center.configuration.FactoryConfiguration;
 import com.service.mental_health_therapy_center.dto.LoginDto;
+import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -23,6 +24,7 @@ public class LoginDaoImpl implements LoginDao {
              query.setParameter("name", name);
 
 
+             session.close();
 
         return query.getResultList();
 
@@ -40,7 +42,7 @@ public class LoginDaoImpl implements LoginDao {
     }
 
     @Override
-    public boolean update(User user) {
+    public boolean update(LoginDto dto) {
         return false;
     }
 

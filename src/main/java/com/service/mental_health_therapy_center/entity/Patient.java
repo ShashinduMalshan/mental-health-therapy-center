@@ -20,6 +20,7 @@ public class Patient {
     String name;
     int age;
     int phone;
+    String medicalHistory;
     String email;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)

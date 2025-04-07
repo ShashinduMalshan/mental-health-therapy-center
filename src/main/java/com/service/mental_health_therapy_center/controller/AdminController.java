@@ -43,6 +43,9 @@ public class AdminController implements Initializable {
         colPassword.setCellValueFactory(new PropertyValueFactory<>("Password"));
         colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
 
+        colRole.setStyle("-fx-alignment: CENTER;");
+
+
     }
 
     public void loadTable()  {
@@ -158,9 +161,6 @@ public class AdminController implements Initializable {
          }else {
                 new Alert(Alert.AlertType.ERROR, "Fail to Update User...!").show();
              }
-
-
-
     }
 
     public void saveBtnOnAction(ActionEvent actionEvent) {

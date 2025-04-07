@@ -61,7 +61,7 @@ public class AdminBoImpl implements AdminBo {
 
 
 
-      public String getNextId(){
+    public String getNextId(){
         String id = adminDao.getLastId() ;
 
         if (id != null){

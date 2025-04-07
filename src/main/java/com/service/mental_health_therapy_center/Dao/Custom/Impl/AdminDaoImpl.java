@@ -2,6 +2,7 @@ package com.service.mental_health_therapy_center.Dao.Custom.Impl;
 
 import com.service.mental_health_therapy_center.Dao.Custom.AdminDao;
 import com.service.mental_health_therapy_center.configuration.FactoryConfiguration;
+import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -28,6 +29,8 @@ public class AdminDaoImpl implements AdminDao {
             session.persist(user);
             transaction.commit();
 
+            session.close();
+
             return true;
     }
 
@@ -37,6 +40,8 @@ public class AdminDaoImpl implements AdminDao {
 
             session.merge(user);
             transaction.commit();
+
+            session.close();
 
             return true;
     }
@@ -50,6 +55,8 @@ public class AdminDaoImpl implements AdminDao {
 
         session.remove(user);
         transaction.commit();
+
+        session.close();
         return true;
     }
 
@@ -59,6 +66,9 @@ public class AdminDaoImpl implements AdminDao {
         Query<User> query = session.createQuery(
             "FROM User ORDER BY id DESC limit 1", User.class);
         List<User> result = query.getResultList();
+
+        session.close();
+
         return result.isEmpty() ? null : result.get(0).getId();
 
     }
