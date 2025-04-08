@@ -23,7 +23,7 @@ public class TherapyProgram {
     private String id;
     private String ProGramName;
     private Date duration;
-    private int cost;
+    private double cost;
 
 
     @ManyToOne
