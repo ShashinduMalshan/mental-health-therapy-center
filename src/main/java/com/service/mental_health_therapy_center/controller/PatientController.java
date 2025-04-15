@@ -4,10 +4,6 @@ import com.service.mental_health_therapy_center.Bo.custom.Impl.PatientBoImpl;
 import com.service.mental_health_therapy_center.Bo.custom.PatientBo;
 import com.service.mental_health_therapy_center.dto.PatientDto;
 import com.service.mental_health_therapy_center.dto.PatientTm;
-import com.service.mental_health_therapy_center.dto.TherapistDto;
-import com.service.mental_health_therapy_center.dto.TherapistTm;
-import jakarta.persistence.Id;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -102,9 +98,6 @@ public class PatientController implements Initializable {
         contactNoField.setText("");
         emailField.setText("");
 
-    }
-
-    public void searchFieldBtnAction(ActionEvent actionEvent) {
     }
 
     public void updateBtnOnAction(ActionEvent actionEvent) {
@@ -304,4 +297,6 @@ public class PatientController implements Initializable {
         }
     }
 
+    public void searchFieldBtnAction(ActionEvent actionEvent) {
+        }
 }

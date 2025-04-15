@@ -1,7 +1,4 @@
 package com.service.mental_health_therapy_center.entity;
-
-
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +10,6 @@ import java.util.List;
     @NoArgsConstructor
     @Getter
     @Setter
-//    @Data
     @Entity
     @Table(name = "therapyProgram")
 public class TherapyProgram {
@@ -22,16 +18,17 @@ public class TherapyProgram {
     @Column(name = "therapyProgramId")
     private String id;
     private String ProGramName;
-    private Date duration;
+    private String duration;
     private double cost;
 
 
-    @ManyToOne
-    @JoinColumn(name = "therapist_id")
-    private Therapist therapist;
+
+
+    @OneToMany(mappedBy = "therapyProgram", cascade = CascadeType.ALL)
+    private List<Therapist> therapists;
 
     @OneToMany(mappedBy = "therapy_program")
-     private List<Registration> registrations;
+    private List<Registration> registrations;
 
 
 

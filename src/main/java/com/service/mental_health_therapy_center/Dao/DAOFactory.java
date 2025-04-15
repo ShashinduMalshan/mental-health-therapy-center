@@ -1,10 +1,8 @@
 package com.service.mental_health_therapy_center.Dao;
 
 import com.service.mental_health_therapy_center.Dao.Custom.AdminDao;
-import com.service.mental_health_therapy_center.Dao.Custom.Impl.AdminDaoImpl;
-import com.service.mental_health_therapy_center.Dao.Custom.Impl.LoginDaoImpl;
-import com.service.mental_health_therapy_center.Dao.Custom.Impl.PatientDaoImpl;
-import com.service.mental_health_therapy_center.Dao.Custom.Impl.TherapistDaoImpl;
+import com.service.mental_health_therapy_center.Dao.Custom.Impl.*;
+import com.service.mental_health_therapy_center.Dao.Custom.TherapyProgramDao;
 
 public class DAOFactory {
 
@@ -18,8 +16,9 @@ public class DAOFactory {
     }
 
     public enum DAOType {
-        ADMIN,Login,Register,THERAPIST,PATIENT
+        ADMIN,Login,Register,THERAPIST,PATIENT,THERAPISTPROGRAM
     }
+
 
     public CrudDao  getDAOType(DAOType type) {
 
@@ -36,6 +35,8 @@ public class DAOFactory {
             case PATIENT:
                 return new PatientDaoImpl();
 
+            case THERAPISTPROGRAM:
+                return new TherapyProgramDaoImpl();
             default:
                 return null;
 

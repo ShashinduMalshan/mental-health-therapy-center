@@ -44,7 +44,7 @@
                         <Button onMouseClicked="#therapistsBtnOnAction" styleClass="nav-button" text="Therapists" />
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button styleClass="nav-button" text="Treatment Plans" />
+                        <Button onMouseClicked="#treatmentPlanOnAction" styleClass="nav-button" text="Treatment Plans" />
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
                         <Button styleClass="nav-button" text="Analytics" />

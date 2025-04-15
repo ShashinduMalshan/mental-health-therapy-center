@@ -1,7 +1,8 @@
 package com.service.mental_health_therapy_center.Bo.custom;
 
 import com.service.mental_health_therapy_center.dto.TherapistDto;
-import com.service.mental_health_therapy_center.dto.UserDto;
+import com.service.mental_health_therapy_center.dto.TherapyProgramTm;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -12,5 +13,6 @@ public interface TherapistBo {
     boolean update(TherapistDto therapistDto);
     boolean delete(String Id);
     String getNextId();
+    ObservableList<TherapyProgramTm> loadTherapyProgram();
 
 }

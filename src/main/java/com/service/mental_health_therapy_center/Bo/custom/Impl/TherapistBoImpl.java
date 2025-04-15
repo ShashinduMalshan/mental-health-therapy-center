@@ -1,13 +1,15 @@
 package com.service.mental_health_therapy_center.Bo.custom.Impl;
 
 import com.service.mental_health_therapy_center.Bo.custom.TherapistBo;
-import com.service.mental_health_therapy_center.Dao.Custom.Impl.TherapistDaoImpl;
 import com.service.mental_health_therapy_center.Dao.Custom.TherapistDao;
+import com.service.mental_health_therapy_center.Dao.Custom.TherapyProgramDao;
 import com.service.mental_health_therapy_center.Dao.DAOFactory;
 import com.service.mental_health_therapy_center.dto.TherapistDto;
-import com.service.mental_health_therapy_center.dto.UserDto;
+import com.service.mental_health_therapy_center.dto.TherapyProgramTm;
 import com.service.mental_health_therapy_center.entity.Therapist;
-import com.service.mental_health_therapy_center.entity.User;
+import com.service.mental_health_therapy_center.entity.TherapyProgram;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class TherapistBoImpl implements TherapistBo {
 
     Therapist therapist = new Therapist();
     TherapistDao therapistDao = (TherapistDao) DAOFactory.getInstance().getDAOType(DAOFactory.DAOType.THERAPIST);
+    TherapyProgramDao therapyProgramDao = (TherapyProgramDao) DAOFactory.getInstance().getDAOType(DAOFactory.DAOType.THERAPISTPROGRAM);
 
     @Override
     public ArrayList<TherapistDto> loadTable() {
@@ -31,10 +34,32 @@ public class TherapistBoImpl implements TherapistBo {
              therapistDto.setSpecialization(therapist.getSpecialization());
              therapistDto.setContactNo(therapist.getPhone());
              therapistDto.setEmail(therapist.getEmail());
+             therapistDto.setTherapyProgram(therapist.getTherapyProgram());
 
              therapistDtos.add(therapistDto);
          }
          return therapistDtos;
+    }
+    
+    public ObservableList<TherapyProgramTm> loadTherapyProgram(){
+
+        
+         List<TherapyProgram> allTherapyProgram = therapyProgramDao.getAll();
+
+        ObservableList<TherapyProgramTm> observableList = FXCollections.observableArrayList();
+
+    
+         for (TherapyProgram therapyProgram : allTherapyProgram) {
+              TherapyProgramTm therapyProgramTm = new TherapyProgramTm(
+                    therapyProgram.getId(),
+                    therapyProgram.getProGramName(),
+                    therapyProgram.getDuration(),
+                    therapyProgram.getCost()
+                );
+             
+             observableList.add(therapyProgramTm);
+         }
+         return observableList;
     }
 
     @Override
@@ -45,6 +70,7 @@ public class TherapistBoImpl implements TherapistBo {
         therapist.setSpecialization(therapistDto.getSpecialization());
         therapist.setEmail(therapistDto.getEmail());
         therapist.setPhone(therapistDto.getContactNo());
+        therapist.setTherapyProgram(therapistDto.getTherapyProgram());
 
         therapistDao.save(therapist);
 
@@ -59,6 +85,8 @@ public class TherapistBoImpl implements TherapistBo {
         therapist.setSpecialization(therapistDto.getSpecialization());
         therapist.setEmail(therapistDto.getEmail());
         therapist.setPhone(therapistDto.getContactNo());
+        therapist.setTherapyProgram(therapistDto.getTherapyProgram());
+
 
         therapistDao.update(therapist);
 

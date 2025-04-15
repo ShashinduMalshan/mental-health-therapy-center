@@ -27,8 +27,10 @@ public class Therapist {
     @OneToMany(mappedBy = "therapist", cascade = CascadeType.ALL)
     private List<TherapySession> therapySession;
 
-    @OneToMany(mappedBy ="therapist", cascade = CascadeType.ALL)
-    private List<TherapyProgram> therapyPrograms;
+
+    @ManyToOne
+    @JoinColumn(name = "therapistProgram_id" )
+    private TherapyProgram therapyProgram;
 
 
 }

@@ -1,11 +1,12 @@
 package com.service.mental_health_therapy_center.controller;
 
 import com.service.mental_health_therapy_center.Bo.custom.Impl.TherapistBoImpl;
+import com.service.mental_health_therapy_center.Bo.custom.Impl.TherapyProgramBoImpl;
 import com.service.mental_health_therapy_center.Bo.custom.TherapistBo;
-import com.service.mental_health_therapy_center.dto.TherapistDto;
-import com.service.mental_health_therapy_center.dto.TherapistTm;
-import com.service.mental_health_therapy_center.dto.UserDto;
-import com.service.mental_health_therapy_center.dto.UserTm;
+import com.service.mental_health_therapy_center.Bo.custom.TherapyProgramBo;
+import com.service.mental_health_therapy_center.dto.*;
+import com.service.mental_health_therapy_center.entity.Therapist;
+import com.service.mental_health_therapy_center.entity.TherapyProgram;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -38,9 +40,15 @@ public class TherapistController implements Initializable {
     public TableColumn <TherapistTm ,String>colSpecialization;
     public TableColumn <TherapistTm ,Integer>colContactNo;
     public TableColumn <TherapistTm ,String>colEmail;
+    public TableColumn  <TherapistTm ,String>colPlan;
+
     public Button resetBtn;
+    public ComboBox <String>planId;
 
     TherapistBo therapistBo = new TherapistBoImpl();
+    TherapyProgramBo therapyProgramBo = new TherapyProgramBoImpl();
+
+
 
     private void configureTable() {
 
@@ -49,6 +57,7 @@ public class TherapistController implements Initializable {
         colSpecialization.setCellValueFactory(new PropertyValueFactory<>("Specialization"));
         colContactNo.setCellValueFactory(new PropertyValueFactory<>("ContactNo"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        colPlan.setCellValueFactory(new PropertyValueFactory<>("therapyProgram"));
 
     }
 
@@ -66,7 +75,8 @@ public class TherapistController implements Initializable {
                 therapistDto.getName(),
                 therapistDto.getSpecialization(),
                 therapistDto.getContactNo(),
-                therapistDto.getEmail()
+                therapistDto.getEmail(),
+                therapistDto.getTherapyProgram()
             );
             observableList.add(therapistTm);
         }
@@ -85,6 +95,11 @@ public class TherapistController implements Initializable {
         String specialization = specializationField.getText();
         String stringContact = contactNoField.getText();
         String email = emailField.getText();
+        String plan  = planId.getValue();
+
+
+
+
         int contactNo = 0;
 
         String namePattern = "^[A-Za-z ]+$";
@@ -100,11 +115,13 @@ public class TherapistController implements Initializable {
         boolean isValidSpecialization =specialization.matches(specializationPattern);
         boolean isValidContact = stringContact.matches(contactPattern);
         boolean isValidEmail = email.matches(EmailPattern);
+        boolean isValidPlan = planId.getValue().isEmpty() || planId.getValue() == null;
 
         nameField.setStyle(nameField.getStyle() + ";-fx-border-color: #7367F0;");
         specializationField.setStyle(specializationField.getStyle() + ";-fx-border-color: #7367F0;");
         contactNoField.setStyle(contactNoField.getStyle() + ";-fx-border-color: #7367F0;");
         emailField.setStyle(emailField.getStyle() + ";-fx-border-color: #7367F0;");
+        planId.setStyle(planId.getStyle() + ";-fx-border-color: #7367F0");
 
 
 
@@ -129,10 +146,20 @@ public class TherapistController implements Initializable {
             emailField.setStyle(emailField.getStyle() + ";-fx-border-color: red;");
         }
 
+         if (!isValidPlan) {
+             planId.setStyle(planId.getStyle() + ";-fx-border-color: red;");
+         }
+
         if (isValidName&&isValidSpecialization&&isValidContact&&isValidEmail) {
 
+             List<TherapyProgram> valueByName = therapyProgramBo.getValuByName(plan);
+            TherapyProgram therapyProgram = valueByName.get(0);
+
+
             TherapistDto therapistDto = new TherapistDto(
-                id,name,specialization,contactNo,email
+                id,name,specialization,contactNo,email,therapyProgram
+
+
             );
 
             boolean isSave = therapistBo.update(therapistDto);
@@ -175,6 +202,9 @@ public class TherapistController implements Initializable {
         String specialization = specializationField.getText();
         String stringContact = contactNoField.getText();
         String email = emailField.getText();
+        String plan  = planId.getValue();
+        System.out.println(plan);
+
         int contactNo = 0;
 
         String namePattern = "^[A-Za-z ]+$";
@@ -189,11 +219,14 @@ public class TherapistController implements Initializable {
         boolean isValidSpecialization =specialization.matches(specializationPattern);
         boolean isValidContact = stringContact.matches(contactPattern);
         boolean isValidEmail = email.matches(EmailPattern);
+        boolean isValidPlan = !( planId.getValue() == null|| planId.getValue().isEmpty()) ;
+
 
         nameField.setStyle(nameField.getStyle() + ";-fx-border-color: #7367F0;");
         specializationField.setStyle(specializationField.getStyle() + ";-fx-border-color: #7367F0;");
         contactNoField.setStyle(contactNoField.getStyle() + ";-fx-border-color: #7367F0;");
         emailField.setStyle(emailField.getStyle() + ";-fx-border-color: #7367F0;");
+        planId.setStyle(planId.getStyle() + ";-fx-border-color: #7367F0;");
 
 
 
@@ -218,10 +251,23 @@ public class TherapistController implements Initializable {
             emailField.setStyle(emailField.getStyle() + ";-fx-border-color: red;");
         }
 
-        if (isValidName&&isValidSpecialization&&isValidContact&&isValidEmail) {
+
+         if (!isValidPlan) {
+             planId.setStyle(planId.getStyle() + ";-fx-border-color: red;");
+         }
+
+
+
+        if (isValidName&&isValidSpecialization&&isValidContact&&isValidEmail&&isValidPlan) {
+
+            List<TherapyProgram> valueByName = therapyProgramBo.getValuByName(plan);
+            TherapyProgram therapyProgram = valueByName.get(0);
+
 
             TherapistDto therapistDto = new TherapistDto(
-                id,name,specialization,contactNo,email
+                id,name,specialization,contactNo,email,therapyProgram
+
+
             );
 
             boolean isSave = therapistBo.save(therapistDto);
@@ -237,6 +283,7 @@ public class TherapistController implements Initializable {
             }
     }
 
+
     public void refresh(){
         loadTable();
         idField.setText(therapistBo.getNextId());
@@ -244,6 +291,22 @@ public class TherapistController implements Initializable {
         specializationField.setText("");
         contactNoField.setText("");
         emailField.setText("");
+        planId.getSelectionModel().clearSelection();
+
+        ObservableList<TherapyProgramTm> programs = therapistBo.loadTherapyProgram();
+
+
+        ObservableList<String> programDisplayStrings = FXCollections.observableArrayList();
+
+        for (TherapyProgramTm program : programs) {
+            programDisplayStrings.add(program.getProGramName());
+        }
+
+        planId.setItems(programDisplayStrings);
+
+
+
+
 
     }
 
@@ -265,6 +328,7 @@ public class TherapistController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
         try {
             configureTable();
             refresh();
@@ -276,5 +340,6 @@ public class TherapistController implements Initializable {
 
     public void resetBtnOnAction(ActionEvent actionEvent) {
         refresh();
+        System.out.println(planId.getValue());
     }
 }
