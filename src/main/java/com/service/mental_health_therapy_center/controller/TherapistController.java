@@ -7,6 +7,7 @@ import com.service.mental_health_therapy_center.Bo.custom.TherapyProgramBo;
 import com.service.mental_health_therapy_center.dto.*;
 import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.TherapyProgram;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,7 +58,10 @@ public class TherapistController implements Initializable {
         colSpecialization.setCellValueFactory(new PropertyValueFactory<>("Specialization"));
         colContactNo.setCellValueFactory(new PropertyValueFactory<>("ContactNo"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        colPlan.setCellValueFactory(new PropertyValueFactory<>("therapyProgram"));
+        colPlan.setCellValueFactory(cellData -> {
+            TherapyProgram program = cellData.getValue().getTherapyProgram();
+            return new ReadOnlyStringWrapper(program != null ? program.getProGramName() : "No Program");
+        });
 
     }
 
@@ -320,6 +324,7 @@ public class TherapistController implements Initializable {
             specializationField.setText(therapistTm.getSpecialization());
             emailField.setText(therapistTm.getEmail());
             contactNoField.setText(String.valueOf(therapistTm.getContactNo()));
+            planId.setValue(therapistTm.getTherapyProgram().getProGramName());
         }
 
 
@@ -340,6 +345,5 @@ public class TherapistController implements Initializable {
 
     public void resetBtnOnAction(ActionEvent actionEvent) {
         refresh();
-        System.out.println(planId.getValue());
     }
 }

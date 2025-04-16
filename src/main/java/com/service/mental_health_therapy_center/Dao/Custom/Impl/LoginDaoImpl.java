@@ -17,16 +17,18 @@ public class LoginDaoImpl implements LoginDao {
 
     public List<User> getUserByUsername(LoginDto loginDto) {
         Session session = FactoryConfiguration.getInstance().getSession();
+        List<User> users;
+
 
         String name =loginDto.getName();
 
              Query<User> query = session.createQuery("from User where name = :name", User.class);
              query.setParameter("name", name);
 
+        users = query.getResultList();
+        session.close();
 
-             session.close();
-
-        return query.getResultList();
+        return users ;
 
     }
 

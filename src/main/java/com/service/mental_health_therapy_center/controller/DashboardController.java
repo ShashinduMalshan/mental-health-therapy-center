@@ -3,6 +3,7 @@ package com.service.mental_health_therapy_center.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +15,7 @@ public class DashboardController {
     public Label test;
     public AnchorPane DashAnc;
     public AnchorPane loadAnc;
+    public Button logoutButton;
     @FXML
     private Label userNameLbl;
     @FXML
@@ -46,6 +48,8 @@ public class DashboardController {
     public void PatientsOnAction(MouseEvent mouseEvent) {navigateTo("/view/Patient.fxml");}
 
     public void treatmentPlanOnAction(MouseEvent mouseEvent) {navigateTo("/view/TherapyProgram.fxml");}
+
+    public void AppointmentsOnAction(MouseEvent mouseEvent) {navigateTo("/view/TherapySession.fxml");}
 
     public void navigateTo(String fxmlPath) {
 

@@ -2,6 +2,7 @@ package com.service.mental_health_therapy_center.controller;
 
 import com.service.mental_health_therapy_center.Bo.custom.Impl.LoginBoImpl;
 import com.service.mental_health_therapy_center.Bo.custom.LoginBo;
+import com.service.mental_health_therapy_center.Exceptions.LoginException;
 import com.service.mental_health_therapy_center.Main;
 import com.service.mental_health_therapy_center.dto.LoginDto;
 import javafx.event.ActionEvent;
@@ -46,25 +47,34 @@ public class LoginController implements Initializable {
         password = passwordField.getText().trim();
         role = roleComboBox.getValue();
 
+        try {
+            if (username.isEmpty() || password.isEmpty() || role == null) {
+                throw new LoginException("Username, password, or role cannot be empty.");
+            }
 
-        LoginDto loginDto = new LoginDto(username, password, role);
 
-        if (loginBo.authenticateUser(loginDto)) {
-            System.out.println("Login success");
+            LoginDto loginDto = new LoginDto(username, password, role);
 
-            FXMLLoader load = new FXMLLoader(getClass().getResource("/view/DashBord.fxml"));
-            AnchorPane dashboard = load.load();
+            if (loginBo.authenticateUser(loginDto)) {
+                System.out.println("Login success");
 
-            DashboardController dashboardController = load.getController();
-            dashboardController.setLabel(username, role);
+                FXMLLoader load = new FXMLLoader(getClass().getResource("/view/DashBord.fxml"));
+                AnchorPane dashboard = load.load();
 
-            loginAncerPane.getChildren().clear();
-            loginAncerPane.getChildren().add(dashboard);
-            new Alert(Alert.AlertType.CONFIRMATION, "Login Success", ButtonType.OK).show();
+                DashboardController dashboardController = load.getController();
+                dashboardController.setLabel(username, role);
 
-        }else {
-            System.out.println("Login failed");
-            new Alert(Alert.AlertType.ERROR, "Login failed").show();
+                loginAncerPane.getChildren().clear();
+                loginAncerPane.getChildren().add(dashboard);
+                new Alert(Alert.AlertType.CONFIRMATION, "Login Success", ButtonType.OK).show();
+
+            } else {
+                throw new LoginException("Invalid username or password or role");
+            }
+        }catch (LoginException e) {
+                    new Alert(Alert.AlertType.ERROR, "Login failed").show();
+                    e.printStackTrace();
+
         }
 
 
