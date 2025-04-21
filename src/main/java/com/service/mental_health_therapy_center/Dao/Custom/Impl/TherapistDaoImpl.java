@@ -3,6 +3,7 @@ package com.service.mental_health_therapy_center.Dao.Custom.Impl;
 import com.service.mental_health_therapy_center.Dao.Custom.TherapistDao;
 import com.service.mental_health_therapy_center.configuration.FactoryConfiguration;
 import com.service.mental_health_therapy_center.entity.Therapist;
+import com.service.mental_health_therapy_center.entity.TherapyProgram;
 import com.service.mental_health_therapy_center.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -78,4 +79,23 @@ public class TherapistDaoImpl implements TherapistDao {
 
     }
 
+    @Override
+    public List<Therapist>
+    getValueByTherapyProgram(TherapyProgram therapyProgram) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        List<Therapist> therapistList = null;
+
+            try {
+                Query<Therapist> query = session.createQuery(
+                    "FROM Therapist WHERE therapyProgram = :therapyProgram", Therapist.class);
+                query.setParameter("therapyProgram",therapyProgram);
+                therapistList = query.getResultList();
+            } finally {
+                session.close();
+            }
+
+            return therapistList;
+
+
+    }
 }

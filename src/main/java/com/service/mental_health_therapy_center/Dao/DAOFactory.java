@@ -16,7 +16,23 @@ public class DAOFactory {
     }
 
     public enum DAOType {
-        ADMIN,Login,Register,THERAPIST,PATIENT,THERAPISTPROGRAM
+        ADMIN,Login,Register,THERAPIST,PATIENT,THERAPISTPROGRAM,THERAPYSESSION
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -37,6 +53,9 @@ public class DAOFactory {
 
             case THERAPISTPROGRAM:
                 return new TherapyProgramDaoImpl();
+
+            case THERAPYSESSION:
+                return new TherapySessionDaoImpl();
             default:
                 return null;
 

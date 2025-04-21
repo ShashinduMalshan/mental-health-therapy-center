@@ -3,10 +3,14 @@ package com.service.mental_health_therapy_center.Bo.custom.Impl;
 import com.service.mental_health_therapy_center.Bo.custom.PatientBo;
 import com.service.mental_health_therapy_center.Dao.Custom.PatientDao;
 import com.service.mental_health_therapy_center.Dao.DAOFactory;
+import com.service.mental_health_therapy_center.configuration.FactoryConfiguration;
 import com.service.mental_health_therapy_center.dto.PatientDto;
 import com.service.mental_health_therapy_center.dto.TherapistDto;
 import com.service.mental_health_therapy_center.entity.Patient;
 import com.service.mental_health_therapy_center.entity.Therapist;
+import com.service.mental_health_therapy_center.entity.TherapyProgram;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,4 +81,7 @@ public class PatientBoImpl implements PatientBo {
         }
         return "P001";
     }
+
+
+
 }

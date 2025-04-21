@@ -1,0 +1,486 @@
+/* Modern Beautiful Admin Dashboard Stylesheet */
+
+/* Main Container with Glassmorphism */
+.glass-container {
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-background-radius: 24px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 8);
+    -fx-padding: 32px;
+    -fx-border-width: 1px;
+    -fx-border-color: rgba(255, 255, 255, 0.8);
+    -fx-border-radius: 24px;
+}
+
+/* Gradient Header */
+.header-container {
+    -fx-background-color: linear-gradient(to right, #4e73df, #6f86e0, #8c9cf5);
+    -fx-background-radius: 18px;
+    -fx-padding: 20px;
+    -fx-margin-bottom: 25px;
+    -fx-effect: dropshadow(gaussian, rgba(78,115,223,0.25), 10, 0, 0, 4);
+}
+
+.dashboard-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0, 0, 1);
+}
+
+/* Form Elements */
+.input-label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 0 0 5px 0;
+}
+
+.futuristic-input {
+    -fx-background-color: #f8f9fc;
+    -fx-background-radius: 12px;
+    -fx-border-color: rgba(227, 230, 240, 0.8);
+    -fx-border-radius: 12px;
+    -fx-padding: 14px;
+    -fx-font-size: 14px;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 1);
+}
+
+.futuristic-input:focused {
+    -fx-border-color: #4e73df;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(78,115,223,0.3), 8, 0, 0, 0);
+}
+
+/* Buttons with Gradient */
+.primary-button {
+    -fx-background-color: linear-gradient(to right, #4e73df, #5a7ee0);
+    -fx-text-fill: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 14px 24px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(78,115,223,0.3), 8, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: linear-gradient(to right, #3e63cf, #4a6ecf);
+    -fx-effect: dropshadow(gaussian, rgba(78,115,223,0.4), 10, 0, 0, 3);
+    -fx-translate-y: -1px;
+}
+
+.secondary-button {
+    -fx-background-color: linear-gradient(to right, #1cc88a, #20e19c);
+    -fx-text-fill: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 14px 24px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(28,200,138,0.3), 8, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: linear-gradient(to right, #17a673, #18c985);
+    -fx-effect: dropshadow(gaussian, rgba(28,200,138,0.4), 10, 0, 0, 3);
+    -fx-translate-y: -1px;
+}
+
+.danger-button {
+    -fx-background-color: linear-gradient(to right, #e74a3b, #f05c4d);
+    -fx-text-fill: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 14px 24px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(231,74,59,0.3), 8, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.danger-button:hover {
+    -fx-background-color: linear-gradient(to right, #d63232, #e64a3a);
+    -fx-effect: dropshadow(gaussian, rgba(231,74,59,0.4), 10, 0, 0, 3);
+    -fx-translate-y: -1px;
+}
+
+/* Modern Table */
+.futuristic-table .table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-border-color: #e3e6f0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-padding: 5px;
+}
+
+.futuristic-table .column-header {
+    -fx-background-color: #f8f9fc;
+    -fx-text-fill: #4e73df;
+    -fx-font-weight: bold;
+    -fx-padding: 15px;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #e3e6f0;
+}
+
+.futuristic-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #f5f5f5;
+    -fx-padding: 5px;
+}
+
+.futuristic-table .table-row-cell:hover {
+    -fx-background-color: #f8f9fc;
+}
+
+.futuristic-table .table-row-cell:selected {
+    -fx-background-color: rgba(78,115,223,0.1);
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: rgba(78,115,223,0.2);
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+
+/* Search Input with Icon */
+.search-input {
+    -fx-background-color: #f8f9fc;
+    -fx-background-radius: 20px;
+    -fx-border-color: #e3e6f0;
+    -fx-border-radius: 20px;
+    -fx-padding: 12px 20px 12px 40px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 15px center;
+    -fx-background-size: 18px;
+}
+
+.search-input:focused {
+    -fx-border-color: #4e73df;
+    -fx-effect: dropshadow(gaussian, rgba(78,115,223,0.2), 8, 0, 0, 0);
+}
+
+/* Spinner Controls */
+.spinner {
+    -fx-background-color: #f8f9fc;
+    -fx-background-radius: 12px;
+    -fx-border-color: #e3e6f0;
+    -fx-border-radius: 12px;
+}
+
+.spinner .increment-arrow-button{
+    -fx-background-color: linear-gradient(to right, #4e73df, #5a7ee0);
+    -fx-background-radius: 0 10px 0 0;
+}
+
+.spinner .decrement-arrow-button {
+    -fx-background-color: linear-gradient(to right, #4e73df, #5a7ee0);
+    -fx-background-radius: 0 0 10px 0;
+}
+
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 1, 0, 0, 0);
+}
+
+.spinner .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+/* Date Picker Styling */
+.date-picker {
+    -fx-background-color: #f8f9fc;
+    -fx-background-radius: 12px;
+    -fx-border-color: #e3e6f0;
+    -fx-border-radius: 12px;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: linear-gradient(to right, #4e73df, #5a7ee0);
+    -fx-background-radius: 0 12px 12px 0;
+}
+
+.date-picker .arrow-button .arrow {
+    -fx-background-color: white;
+}
+
+.date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+.date-picker-popup {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0, 0, 8);
+    -fx-padding: 5px;
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: linear-gradient(to right, #4e73df, #5a7ee0);
+    -fx-background-radius: 12px 12px 0 0;
+    -fx-padding: 10px;
+}
+
+.date-picker-popup .month-year-pane .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-padding: 5px;
+    -fx-opacity: 1.0;
+}
+
+/* Make sure arrows for month/year navigation are visible */
+.date-picker-popup .spinner > .left-button{ -fx-background-color: white;
+    -fx-background-radius:  12px 0 0 12px;
+    -fx-padding: 4px;
+}
+
+.date-picker-popup .spinner > .right-button {
+    -fx-background-color: white;
+    -fx-background-radius: 0 12px 12px 0;
+    -fx-padding: 4px;
+}
+
+.date-picker-popup .spinner > .left-button > .left-arrow,
+.date-picker-popup .spinner > .right-button > .right-arrow {
+    -fx-background-color: #4e73df;
+    -fx-background-insets: 0;
+    -fx-padding: 4px;
+    -fx-effect: null;
+}
+
+/* Year spinner specific fixes */
+.date-picker-popup .spinner .year-spinner {
+    -fx-alignment: center;
+}
+
+.date-picker-popup .spinner .month-spinner {
+    -fx-alignment: center;
+}
+
+.date-picker-popup > * > .spinner {
+    -fx-spacing: 0;
+    -fx-alignment: center;
+    -fx-fill-height: false;
+    -fx-background-color: transparent;
+    -fx-min-height: 30px;
+}
+
+.date-picker-popup > * > .spinner > .label {
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.date-picker-popup .day-name-cell {
+    -fx-text-fill: #4e73df;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 5px;
+}
+
+.date-picker-popup .week-number-cell {
+    -fx-text-fill: #95a5a6;
+}
+
+.date-picker-popup .day-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10px;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: rgba(78,115,223,0.1);
+}
+
+.date-picker-popup .selected {
+    -fx-background-color: #4e73df;
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .previous-month,
+.date-picker-popup .next-month {
+    -fx-text-fill: #bdc3c7;
+}
+
+.date-picker-popup .today {
+    -fx-border-color: #4e73df;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+}
+
+/* Card Elements */
+.dashboard-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 0, 4);
+    -fx-padding: 20px;
+    -fx-border-width: 1px;
+    -fx-border-color: #f0f0f0;
+    -fx-border-radius: 18px;
+}
+
+.dashboard-card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.dashboard-card-value {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.dashboard-card-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #95a5a6;
+}
+
+/* Progress Bars */
+.progress-bar {
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(to right, #4e73df, #6f86e0);
+    -fx-background-radius: 10px;
+}
+
+.progress-bar.success > .bar {
+    -fx-background-color: linear-gradient(to right, #1cc88a, #20e19c);
+}
+
+.progress-bar.warning > .bar {
+    -fx-background-color: linear-gradient(to right, #f6c23e, #ffd54f);
+}
+
+.progress-bar.danger > .bar {
+    -fx-background-color: linear-gradient(to right, #e74a3b, #f05c4d);
+}
+
+/* Notification Badge */
+.notification-badge {
+    -fx-background-color: #e74a3b;
+    -fx-background-radius: 100px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 2px 8px;
+    -fx-effect: dropshadow(gaussian, rgba(231,74,59,0.3), 5, 0, 0, 2);
+}
+
+/* Tabs */
+.tab-pane {
+    -fx-tab-min-width: 120px;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-padding: 10px 15px;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, -2);
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: #95a5a6;
+    -fx-font-weight: normal;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #4e73df;
+    -fx-font-weight: bold;
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: white;
+    -fx-background-radius: 0 10px 10px 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 100px;
+    -fx-padding: 2px;
+}
+
+.toggle-switch .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 100px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.toggle-switch:selected {
+    -fx-background-color: #4e73df;
+}
+
+/* Scrollbars */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10px;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-height: 10px;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #bdc3c7;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #95a5a6;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-background-color: transparent;
+}
+
+/* Focus states for enhanced user experience */
+.spinner:focused,
+.date-picker:focused {
+    -fx-border-color: #4e73df;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(78,115,223,0.25), 8, 0, 0, 0);
+}
+
+/* Animation for interactive elements */
+.primary-button, .secondary-button, .danger-button {
+    -fx-transition: -fx-background-color 0.2s, -fx-translate-y 0.1s, -fx-effect 0.2s;
+}
+
+/* Tooltip */
+.tooltip {
+    -fx-background-color: #34495e;
+    -fx-text-fill: white;
+    -fx-background-radius: 6px;
+    -fx-font-size: 13px;
+    -fx-padding: 8px 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 3);
+}

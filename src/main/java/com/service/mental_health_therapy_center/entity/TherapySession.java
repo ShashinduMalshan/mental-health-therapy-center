@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
     @AllArgsConstructor
@@ -18,8 +19,9 @@ public class TherapySession {
     @Id
     @Column(name = "therapySessionId")
     private String id;
-    private Date date;
-    private Time time;
+    private LocalDate date;
+    private Time startTime;
+    private Time endTime;
     private String status;
 
     @ManyToOne
@@ -30,4 +32,5 @@ public class TherapySession {
     @JoinColumn(name = "therapistId")
     private Therapist therapist;
 
-}
+
+    }

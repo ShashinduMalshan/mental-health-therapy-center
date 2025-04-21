@@ -70,4 +70,20 @@ public class PatientDaoImpl implements PatientDao {
         session.close();
         return result.isEmpty() ? null : result.get(0).getId();
     }
+
+     public List<Patient> getValueById(String id) {
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        List<Patient> patientList = null;
+
+        try {
+            Query<Patient> query = session.createQuery(
+                "FROM Patient WHERE id = :ID", Patient.class);
+            query.setParameter("ID",id);
+            patientList = query.getResultList();
+        } finally {
+            session.close();
+        }
+        return patientList;
+    }
 }

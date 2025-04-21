@@ -3,6 +3,7 @@ package com.service.mental_health_therapy_center.Bo.custom.Impl;
 import com.service.mental_health_therapy_center.Bo.custom.TherapistBo;
 import com.service.mental_health_therapy_center.Dao.Custom.TherapistDao;
 import com.service.mental_health_therapy_center.Dao.Custom.TherapyProgramDao;
+import com.service.mental_health_therapy_center.Dao.Custom.TherapySessionDao;
 import com.service.mental_health_therapy_center.Dao.DAOFactory;
 import com.service.mental_health_therapy_center.dto.TherapistDto;
 import com.service.mental_health_therapy_center.dto.TherapyProgramTm;
@@ -21,6 +22,7 @@ public class TherapistBoImpl implements TherapistBo {
     Therapist therapist = new Therapist();
     TherapistDao therapistDao = (TherapistDao) DAOFactory.getInstance().getDAOType(DAOFactory.DAOType.THERAPIST);
     TherapyProgramDao therapyProgramDao = (TherapyProgramDao) DAOFactory.getInstance().getDAOType(DAOFactory.DAOType.THERAPISTPROGRAM);
+    TherapySessionDao therapySessionDao = (TherapySessionDao) DAOFactory.getInstance().getDAOType(DAOFactory.DAOType.THERAPYSESSION);
 
     @Override
     public ArrayList<TherapistDto> loadTable() {
@@ -99,7 +101,7 @@ public class TherapistBoImpl implements TherapistBo {
     }
 
     public String getNextId(){
-        String id = therapistDao.getLastId() ;
+        String id = therapySessionDao.getLastId() ;
 
         if (id != null){
             String substring = id.substring(1);
