@@ -19,8 +19,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -28,25 +35,25 @@ import java.util.*;
 public class PaymentController implements Initializable {
 
     public AnchorPane therapyBookingPane;
-    public ComboBox <String> patientComboBox;
+    public ComboBox<String> patientComboBox;
     public TextField patientIdField;
     public DatePicker sessionDatePicker;
     public Spinner hourSpinner;
     public Spinner minuteSpinner;
     public Button addSessionButton;
     public Label totalCostLabel;
-    public TableView <CartTM> sessionsTableView;
-    public TableColumn <CartTM , String>dateColumn;
-    public TableColumn <CartTM , String> programColumn;
-    public TableColumn <CartTM , String> timeColumn;
-    public TableColumn <CartTM , String> durationColumn;
-    public TableColumn <CartTM , String> therapistColumn;
-    public TableColumn  <CartTM , String>costColumn;
-    public TableColumn <CartTM , String> actionsColumn;
+    public TableView<CartTM> sessionsTableView;
+    public TableColumn<CartTM, String> dateColumn;
+    public TableColumn<CartTM, String> programColumn;
+    public TableColumn<CartTM, String> timeColumn;
+    public TableColumn<CartTM, String> durationColumn;
+    public TableColumn<CartTM, String> therapistColumn;
+    public TableColumn<CartTM, String> costColumn;
+    public TableColumn<CartTM, String> actionsColumn;
     public Button clearAllButton;
     public Button bookPayButton;
     public Button pendingButton;
-    public ComboBox <String>  planComboBox;
+    public ComboBox<String> planComboBox;
     public TextField planIdField;
     public Label therapist;
     public TextField therapistNameField;
@@ -55,6 +62,7 @@ public class PaymentController implements Initializable {
     public TextField dueAmountFeild;
     public TextField balnceField;
     public Button checkButton;
+    public Button invoiceButton;
 
     Map<String, String> patientMap = new HashMap<>();
     Map<String, String> programMap = new HashMap<>();
@@ -67,7 +75,6 @@ public class PaymentController implements Initializable {
     double payment = 0;
 
 
-    
     private void configureTable() {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         programColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTherapyProgram().getProGramName()));
@@ -85,7 +92,7 @@ public class PaymentController implements Initializable {
         String patientId = patientIdField.getText();
         String patientName = patientComboBox.getValue();
         String program = planComboBox.getValue();
-        String programId =  planIdField.getText();
+        String programId = planIdField.getText();
         LocalDate date = sessionDatePicker.getValue();
         int hour = (int) hourSpinner.getValue();
         int minute = (int) minuteSpinner.getValue();
@@ -116,92 +123,85 @@ public class PaymentController implements Initializable {
         planComboBox.setStyle(planComboBox.getStyle() + ";-fx-border-color: #7367F0;");
 
 
-            if (patientName == null) {
-                patientComboBox.setStyle("-fx-border-color: red;");
-                new Alert(Alert.AlertType.ERROR, "Please fill all the fields!").show();
+        if (patientName == null) {
+            patientComboBox.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Please fill all the fields!").show();
             return;
-            }
-            if (program == null) {
-                planComboBox.setStyle("-fx-border-color: red;");
-                new Alert(Alert.AlertType.ERROR, "Please fill all the fields!").show();
+        }
+        if (program == null) {
+            planComboBox.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Please fill all the fields!").show();
             return;
-            }
-            if (date == null) {
-                sessionDatePicker.setStyle("-fx-border-color: red;");
-                new Alert(Alert.AlertType.ERROR, "Please fill all the fields!").show();
+        }
+        if (date == null) {
+            sessionDatePicker.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Please fill all the fields!").show();
             return;
-            }
+        }
 
 
-            boolean isValidDateAndTime = true;
+        boolean isValidDateAndTime = true;
 
-            ArrayList<TherapySessionDto> therapySessionDtos = therapySessionBo.loadTable();
+        ArrayList<TherapySessionDto> therapySessionDtos = therapySessionBo.loadTable();
 
-            try {
-                for (TherapySessionDto session : therapySessionDtos) {
-                    if (session.getDate().isEqual(date)) {
-                        boolean overlaps = !(endTime.isBefore(session.getStartTime()) ||
-                                startTime.isAfter(session.getEndTime()));
+        try {
+            for (TherapySessionDto session : therapySessionDtos) {
+                if (session.getDate().isEqual(date)) {
+                    boolean overlaps = !(endTime.isBefore(session.getStartTime()) ||
+                            startTime.isAfter(session.getEndTime()));
 
-                        if (overlaps) {
-                            isValidDateAndTime = false;
-                            throw new SchedulingConflictException("This time slot is already booked. Please select a different time.");
-                        }
+                    if (overlaps) {
+                        isValidDateAndTime = false;
+                        throw new SchedulingConflictException("This time slot is already booked. Please select a different time.");
                     }
                 }
-            } catch (SchedulingConflictException e) {
-                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-                return;
             }
+        } catch (SchedulingConflictException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            return;
+        }
 
 
         try {
-                for (CartTM session : cartTMS) {
-                    if (session.getDate().isEqual(date)) {
-                        boolean overlaps = !(endTime.isBefore(session.getStartTime()) ||
-                                startTime.isAfter(session.getEndTime()));
+            for (CartTM session : cartTMS) {
+                if (session.getDate().isEqual(date)) {
+                    boolean overlaps = !(endTime.isBefore(session.getStartTime()) ||
+                            startTime.isAfter(session.getEndTime()));
 
-                        if (overlaps) {
-                            isValidDateAndTime = false;
-                            throw new SchedulingConflictException("This time slot is already added. Please select a different time.");
-                        }
+                    if (overlaps) {
+                        isValidDateAndTime = false;
+                        throw new SchedulingConflictException("This time slot is already added. Please select a different time.");
                     }
                 }
-            } catch (SchedulingConflictException e) {
-                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-                return;
             }
-
-
-
-
-
-
-
+        } catch (SchedulingConflictException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            return;
+        }
 
 
         List<TherapyProgram> valueByName = paymentBo.getValueByName(program);
-            if (valueByName.isEmpty()) {
-                new Alert(Alert.AlertType.ERROR, "Therapy program not found!").show();
-                return;
-            }
-            TherapyProgram therapyProgram = valueByName.get(0);
+        if (valueByName.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Therapy program not found!").show();
+            return;
+        }
+        TherapyProgram therapyProgram = valueByName.get(0);
 
-            List<Patient> valueById = paymentBo.getValueById(patientId);
-            if (valueById.isEmpty()) {
-                new Alert(Alert.AlertType.ERROR, "Patient not found!").show();
-                return;
-            }
-            Patient patient = valueById.get(0);
+        List<Patient> valueById = paymentBo.getValueById(patientId);
+        if (valueById.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Patient not found!").show();
+            return;
+        }
+        Patient patient = valueById.get(0);
 
 
-            List<Therapist> TherapistValue = paymentBo.getValueByTherapyProgram(therapyProgram);
+        List<Therapist> TherapistValue = paymentBo.getValueByTherapyProgram(therapyProgram);
 
-            if (TherapistValue.isEmpty()) {
-                new Alert(Alert.AlertType.ERROR, "No therapists available for the selected therapy program!").show();
-                return;
-            }
-            Therapist therapist = TherapistValue.get(0);
+        if (TherapistValue.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "No therapists available for the selected therapy program!").show();
+            return;
+        }
+        Therapist therapist = TherapistValue.get(0);
 
 
 //            boolean isAlreadyAdded = cartTMS.stream()
@@ -211,52 +211,50 @@ public class PaymentController implements Initializable {
 //                new Alert(Alert.AlertType.WARNING, "This session already exists.").show();
 //                return;
 //            }
-    
-            double dueAmount =therapyProgram.getCost() - paymentBo.getalreadyPaid(programId, patientId);
-            dueAmountFeild.setText(String.valueOf(dueAmount));
 
-            boolean isValidAmount = AmountField.getText().matches("^\\d*\\.?\\d+$");
+        double dueAmount = therapyProgram.getCost() - paymentBo.getalreadyPaid(programId, patientId);
+        dueAmountFeild.setText(String.valueOf(dueAmount));
 
-            if (!isValidAmount) {
-                new Alert(Alert.AlertType.ERROR, "Amount entered is invalid.").show();
-                AmountField.setStyle("-fx-border-color: red;");
-                return;
-            }
+        boolean isValidAmount = AmountField.getText().matches("^\\d*\\.?\\d+$");
+
+        if (!isValidAmount) {
+            new Alert(Alert.AlertType.ERROR, "Amount entered is invalid.").show();
+            AmountField.setStyle("-fx-border-color: red;");
+            return;
+        }
         AmountField.setStyle(AmountField.getStyle() + ";-fx-border-color: #7367F0;");
         enteredAmount = Double.parseDouble(AmountField.getText());
 
-            if (enteredAmount > dueAmount) {
-                payment = dueAmount;
-                balnceField.setText(String.valueOf(enteredAmount-dueAmount));
-            }else {
-                payment = enteredAmount;
-                balnceField.setText(String.valueOf(0));
-            }
+        if (enteredAmount > dueAmount) {
+            payment = dueAmount;
+            balnceField.setText(String.valueOf(enteredAmount - dueAmount));
+        } else {
+            payment = enteredAmount;
+            balnceField.setText(String.valueOf(0));
+        }
 
 
         Button btn = new Button("Remove");
 
-                    CartTM newCartTM = new CartTM(
-                        "sessionID",
-                        patient,
-                        therapist,
-                        therapyProgram,
-                        date,
-                        startTime,
-                        endTime,
-                        btn
-                    );
+        CartTM newCartTM = new CartTM(
+                "sessionID",
+                patient,
+                therapist,
+                therapyProgram,
+                date,
+                startTime,
+                endTime,
+                btn
+        );
 
-                    btn.setOnAction(event -> {
-                        cartTMS.remove(newCartTM);
-                        sessionsTableView.refresh();
-                    });
-                    cartTMS.add(newCartTM);
-
-
+        btn.setOnAction(event -> {
+            cartTMS.remove(newCartTM);
+            sessionsTableView.refresh();
+        });
+        cartTMS.add(newCartTM);
 
 
-        }
+    }
 
     public void clearAllButtonAction(ActionEvent actionEvent) {
         sessionsTableView.getItems().clear();
@@ -304,7 +302,6 @@ public class PaymentController implements Initializable {
         Therapist therapist = TherapistValue.get(0);
 
 
-
         PaymentDto paymentDto = new PaymentDto(
                 paymentId,
                 therapyProgram.getCost(),
@@ -315,26 +312,26 @@ public class PaymentController implements Initializable {
         );
 
 
-            ArrayList<SessionPaymentDto> therapySessionDtos = new ArrayList<>();
+        ArrayList<SessionPaymentDto> therapySessionDtos = new ArrayList<>();
 
-            for (CartTM cartTM : cartTMS) {
-                SessionPaymentDto sessionPaymentDto = new SessionPaymentDto(
-                        "S001",
-                        cartTM.getDate(),
-                        cartTM.getStartTime(),
-                        cartTM.getEndTime(),
-                        cartTM.getPatient(),
-                        cartTM.getTherapyProgram(),
-                        cartTM.getTherapist(),
-                        "Pending",
-                        null
-                );
-                therapySessionDtos.add(sessionPaymentDto);
-            }
+        for (CartTM cartTM : cartTMS) {
+            SessionPaymentDto sessionPaymentDto = new SessionPaymentDto(
+                    "S001",
+                    cartTM.getDate(),
+                    cartTM.getStartTime(),
+                    cartTM.getEndTime(),
+                    cartTM.getPatient(),
+                    cartTM.getTherapyProgram(),
+                    cartTM.getTherapist(),
+                    "Pending",
+                    null
+            );
+            therapySessionDtos.add(sessionPaymentDto);
+        }
 
 
-            cartTMS.clear();
-            sessionsTableView.refresh();
+        cartTMS.clear();
+        sessionsTableView.refresh();
 
 
         boolean isSave = paymentBo.save(paymentDto, therapySessionDtos);
@@ -392,7 +389,6 @@ public class PaymentController implements Initializable {
         Therapist therapist = TherapistValue.get(0);
 
 
-
         PaymentDto paymentDto = new PaymentDto(
                 paymentId,
                 payment,
@@ -403,26 +399,26 @@ public class PaymentController implements Initializable {
         );
 
 
-            ArrayList<SessionPaymentDto> therapySessionDtos = new ArrayList<>();
+        ArrayList<SessionPaymentDto> therapySessionDtos = new ArrayList<>();
 
-            for (CartTM cartTM : cartTMS) {
-                SessionPaymentDto sessionPaymentDto = new SessionPaymentDto(
-                        "S001",
-                        cartTM.getDate(),
-                        cartTM.getStartTime(),
-                        cartTM.getEndTime(),
-                        cartTM.getPatient(),
-                        cartTM.getTherapyProgram(),
-                        cartTM.getTherapist(),
-                        "Paid",
-                        null
-                );
-                therapySessionDtos.add(sessionPaymentDto);
-            }
+        for (CartTM cartTM : cartTMS) {
+            SessionPaymentDto sessionPaymentDto = new SessionPaymentDto(
+                    "S001",
+                    cartTM.getDate(),
+                    cartTM.getStartTime(),
+                    cartTM.getEndTime(),
+                    cartTM.getPatient(),
+                    cartTM.getTherapyProgram(),
+                    cartTM.getTherapist(),
+                    "Paid",
+                    null
+            );
+            therapySessionDtos.add(sessionPaymentDto);
+        }
 
 
-            cartTMS.clear();
-            sessionsTableView.refresh();
+        cartTMS.clear();
+        sessionsTableView.refresh();
 
 
         boolean isSave = paymentBo.save(paymentDto, therapySessionDtos);
@@ -430,8 +426,8 @@ public class PaymentController implements Initializable {
             new Alert(Alert.AlertType.INFORMATION, "Payment completed successfully!").show();
         } else {
             throw new PaymentProcessingException("Payment failed!");
-            }
-            clearField();
+        }
+        clearField();
 
 
     }
@@ -486,7 +482,7 @@ public class PaymentController implements Initializable {
         AmountField.clear();
         dueAmountFeild.clear();
         balnceField.clear();
-     }
+    }
 
     public void refresh() {
 
@@ -520,9 +516,10 @@ public class PaymentController implements Initializable {
             if (newValue != null) {
                 therapistNameField.setText(therapistMap.get(newValue));
                 PlanCostField.setText(String.valueOf(programCostMap.get(newValue)));
-            }else {therapistNameField.clear();}
+            } else {
+                therapistNameField.clear();
+            }
         });
-
 
 
         loadPrograms();
@@ -539,6 +536,34 @@ public class PaymentController implements Initializable {
 
     }
 
-    public void checkButtonAction(ActionEvent actionEvent) {
+    public void invoiceButtonAction(ActionEvent actionEvent) {
+
+        if (patientComboBox.getValue() == null||therapistNameField.getText().isEmpty()||AmountField==null||AmountField.getText().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please fill all the fields!").show();
+
+            return;
+        }
+
+        try {
+            JasperReport jasperReport = JasperCompileManager.compileReport(
+                    getClass().getResourceAsStream("/Report/PaymentInvoice.jrxml"));
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("PatientName", patientComboBox.getValue());
+            parameters.put("therapistName", therapistNameField.getText());
+            parameters.put("P_Date", LocalDate.now().toString());
+            parameters.put("DueAmount" ,dueAmountFeild.getText());
+            parameters.put("Time", LocalTime.now().toString());
+            parameters.put("Amount", AmountField.getText());
+            parameters.put("Balance", balnceField.getText());
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
+
+            System.out.println(jasperPrint);
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Fail to generate report...!").show();
+        }
     }
 }

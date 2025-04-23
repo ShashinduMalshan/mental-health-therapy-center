@@ -173,7 +173,7 @@
                </HBox>
                <HBox alignment="CENTER_RIGHT" layoutX="26.0" layoutY="26.0" spacing="15.0">
                   <children>
-                     <Button fx:id="checkButton" layoutX="398.0" layoutY="10.0" mnemonicParsing="false" onAction="#checkButtonAction" styleClass="cancel-button" text="Check" />
+                     <Button fx:id="invoiceButton" layoutX="398.0" layoutY="10.0" mnemonicParsing="false" onAction="#invoiceButtonAction" styleClass="cancel-button" text="Get Invoice" />
                      <Region HBox.hgrow="ALWAYS" />
                      <Button fx:id="clearAllButton" mnemonicParsing="false" onAction="#clearAllButtonAction" styleClass="cancel-button" text="Clear All" />
                      <Button fx:id="pendingButton" mnemonicParsing="false" onAction="#pendingButtonAction" styleClass="pending-button" text="Pending" />

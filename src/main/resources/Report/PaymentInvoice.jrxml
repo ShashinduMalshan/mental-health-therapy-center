@@ -1,0 +1,70 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="PaymentInvoice" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7dc5a96b-da88-4d1c-b3aa-469fba71c14f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="P_Date" class="java.lang.String"/>
+	<parameter name="PatientName" class="java.lang.String"/>
+	<parameter name="therapistName" class="java.lang.String"/>
+	<parameter name="DueAmount" class="java.lang.String"/>
+	<parameter name="Balance" class="java.lang.String"/>
+	<parameter name="Amount" class="java.lang.String"/>
+	<parameter name="Time" class="java.lang.String"/>
+	<query language="sql"><![CDATA[]]></query>
+	<background splitType="Stretch"/>
+	<title height="123" splitType="Stretch">
+		<element kind="staticText" uuid="4789ef04-6f6b-4327-a83f-0b07dc589cb4" x="110" y="0" width="340" height="40" rotation="None" fontSize="18.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Mental Health Therapy Center]]></text>
+		</element>
+		<element kind="textField" uuid="92c3461b-6c53-4b02-b72c-97922a3ea56d" x="460" y="66" width="110" height="24" fontSize="12.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_Date}]]></expression>
+		</element>
+		<element kind="staticText" uuid="72145d54-50c7-4142-8145-0e0d86b73717" x="360" y="90" width="100" height="20" fontSize="12.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Invoice Time]]></text>
+		</element>
+		<element kind="staticText" uuid="5e7128fe-f4c2-4e8e-b891-52181a6f08c9" x="360" y="66" width="100" height="24" fontSize="12.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Invoice Date]]></text>
+		</element>
+		<element kind="textField" uuid="92c0d631-32c2-42ad-b580-f29f7dca5b83" x="460" y="90" width="110" height="20" fontSize="12.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$P{Time}]]></expression>
+		</element>
+	</title>
+	<pageHeader height="96" splitType="Stretch">
+		<element kind="staticText" uuid="1ef0d894-b3d9-4d95-8b56-c359402d931e" x="0" y="40" width="110" height="30" fontSize="12.0" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[TherapistName : ]]></text>
+		</element>
+		<element kind="staticText" uuid="4b7dfaf4-ff0d-426e-9e80-211beb24a9d2" x="0" y="0" width="110" height="30" fontSize="12.0" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Name :]]></text>
+		</element>
+		<element kind="textField" uuid="79be7f71-507b-491f-8596-03003a2b2b4e" x="110" y="0" width="200" height="30" fontSize="12.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$P{PatientName}]]></expression>
+		</element>
+		<element kind="textField" uuid="e42776ab-ab99-493b-a481-de073779743b" x="110" y="40" width="200" height="30" fontSize="12.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$P{therapistName}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="70" splitType="Stretch"/>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<element kind="staticText" uuid="1c91baeb-c964-4d9f-94c8-01780b4b89cb" x="5" y="45" width="110" height="30" fontSize="12.0" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[Amount]]></text>
+			</element>
+			<element kind="staticText" uuid="6e49ce6a-6cff-4eab-a052-ce2ffbdeb06a" x="5" y="80" width="110" height="30" fontSize="12.0" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[Balnce]]></text>
+			</element>
+			<element kind="staticText" uuid="0412f6a3-6cb7-4497-9c00-f1d013c7f62f" x="5" y="5" width="110" height="30" fontSize="12.0" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[Due Amount]]></text>
+			</element>
+			<element kind="textField" uuid="1015fd60-fbba-40e2-922e-afc4d07eb1c3" x="115" y="5" width="100" height="30" fontSize="12.0" bold="true" vTextAlign="Middle">
+				<expression><![CDATA[$P{DueAmount}]]></expression>
+			</element>
+			<element kind="textField" uuid="f0a5f13a-5dc1-4849-b8ed-0d7adcd71472" x="115" y="45" width="100" height="30" fontSize="12.0" bold="true" vTextAlign="Middle">
+				<expression><![CDATA[$P{Amount}]]></expression>
+			</element>
+			<element kind="textField" uuid="5b40a6ae-4335-4de1-bfad-d4c4afca2239" x="115" y="80" width="100" height="30" fontSize="12.0" bold="true" vTextAlign="Middle">
+				<expression><![CDATA[$P{Balance}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

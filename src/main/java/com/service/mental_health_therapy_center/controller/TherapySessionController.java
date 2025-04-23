@@ -12,6 +12,7 @@ import com.service.mental_health_therapy_center.entity.TherapyProgram;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -53,6 +54,7 @@ public class TherapySessionController implements Initializable {
     Map<String, String> patientMap = new HashMap<>();
     TherapySessionBo therapySessionBo = new TherapySessionBoImpl();
     PatientBo patientBo = new PatientBoImpl();
+    ObservableList<TherapySessionTm> observableList;
 
 
     private void configureTable() {
@@ -117,7 +119,7 @@ public class TherapySessionController implements Initializable {
 
      public void loadTable()  {
          ArrayList<TherapySessionDto> therapySessionDtos = therapySessionBo.loadTable();
-         ObservableList<TherapySessionTm> observableList = FXCollections.observableArrayList();
+          observableList = FXCollections.observableArrayList();
 
          for (TherapySessionDto therapySessionDto : therapySessionDtos){
              TherapySessionTm therapySessionTm = new TherapySessionTm();
@@ -138,6 +140,17 @@ public class TherapySessionController implements Initializable {
      }
 
     public void searchFieldBtnAction(ActionEvent actionEvent) {
+        String value = searchField.getText();
+        if (value.isEmpty()) {
+            return;
+        }
+
+        FilteredList<TherapySessionTm> filteredData = new FilteredList<>(observableList, row -> {
+            return row.getPatient().getId().equalsIgnoreCase(value) ||
+                    row.getPatient().getName().equalsIgnoreCase(value) || String.valueOf(row.getPatient().getPhone()).equals(value);
+        });
+
+        therapySessionTable.setItems(filteredData);
     }
 
     public void updateBtnOnAction(ActionEvent actionEvent) {

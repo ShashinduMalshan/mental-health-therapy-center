@@ -6,6 +6,7 @@ module com.service.mental_health_therapy_center {
     requires java.naming; // Ensure this is included for Hibernate
     requires static lombok;
     requires jbcrypt;
+    requires net.sf.jasperreports.core;
 
     opens com.service.mental_health_therapy_center to javafx.fxml;
     opens com.service.mental_health_therapy_center.entity to org.hibernate.orm.core;
