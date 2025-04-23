@@ -10,6 +10,7 @@ import com.service.mental_health_therapy_center.entity.TherapyProgram;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -48,6 +49,7 @@ public class TherapistController implements Initializable {
 
     TherapistBo therapistBo = new TherapistBoImpl();
     TherapyProgramBo therapyProgramBo = new TherapyProgramBoImpl();
+    ObservableList<TherapistTm> observableList;
 
 
 
@@ -68,7 +70,7 @@ public class TherapistController implements Initializable {
     public void loadTable()  {
 
         ArrayList<TherapistDto> therapistDtos = therapistBo.loadTable();
-        ObservableList<TherapistTm> observableList = FXCollections.observableArrayList();
+        observableList = FXCollections.observableArrayList();
 
 
 
@@ -90,6 +92,20 @@ public class TherapistController implements Initializable {
     }
 
     public void searchFieldBtnAction(ActionEvent actionEvent) {
+
+         String value = searchField.getText();
+                if (value.isEmpty()) {
+                    return;
+                }
+
+                FilteredList<TherapistTm> filteredData = new FilteredList<>(observableList, row -> {
+                    return row.getId().equalsIgnoreCase(value) || row.getName().equalsIgnoreCase(value) ||
+                            row.getTherapyProgram().getId().equals(value)||row.getTherapyProgram().getProGramName().equals(value) ||
+                            String.valueOf(row.getContactNo()).equals(value);
+                });
+
+                therapistTable.setItems(filteredData);
+
     }
 
     public void updateBtnOnAction(ActionEvent actionEvent) {
@@ -307,6 +323,7 @@ public class TherapistController implements Initializable {
         }
 
         planId.setItems(programDisplayStrings);
+        searchField.clear();
 
 
 

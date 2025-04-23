@@ -146,8 +146,9 @@ public class TherapySessionController implements Initializable {
         }
 
         FilteredList<TherapySessionTm> filteredData = new FilteredList<>(observableList, row -> {
-            return row.getPatient().getId().equalsIgnoreCase(value) ||
-                    row.getPatient().getName().equalsIgnoreCase(value) || String.valueOf(row.getPatient().getPhone()).equals(value);
+            return row.getPatient().getId().equalsIgnoreCase(value) || row.getPatient().getName().equalsIgnoreCase(value) ||
+                    String.valueOf(row.getPatient().getPhone()).equals(value) || row.getTherapist().getId().equalsIgnoreCase(value)||
+                    row.getTherapist().getName().equalsIgnoreCase(value) ;
         });
 
         therapySessionTable.setItems(filteredData);
@@ -535,6 +536,7 @@ public class TherapySessionController implements Initializable {
         });
         hours.getValueFactory().setValue(00);
         minutes.getValueFactory().setValue(00);
+        searchField.clear();
 
     }
 

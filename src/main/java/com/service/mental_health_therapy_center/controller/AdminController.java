@@ -3,10 +3,12 @@ package com.service.mental_health_therapy_center.controller;
 import com.service.mental_health_therapy_center.Bo.custom.AdminBo;
 import com.service.mental_health_therapy_center.Bo.custom.Impl.AdminBoImpl;
 import com.service.mental_health_therapy_center.Utill.PasswordUtil;
+import com.service.mental_health_therapy_center.dto.TherapySessionTm;
 import com.service.mental_health_therapy_center.dto.UserDto;
 import com.service.mental_health_therapy_center.dto.UserTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -32,8 +34,11 @@ public class AdminController implements Initializable {
     public TextField nameField;
     public ComboBox <String> roleComboBox;
     public Button resetBtn;
+    public Button searchFieldBtn;
+    public TextField searchField1;
 
     AdminBo adminBo = new AdminBoImpl();
+    ObservableList<UserTm> observableList;
 
 
     private void configureTable() {
@@ -51,7 +56,7 @@ public class AdminController implements Initializable {
     public void loadTable()  {
 
         ArrayList<UserDto> userDtos = adminBo.loadTable();
-        ObservableList<UserTm> observableList = FXCollections.observableArrayList();
+        observableList = FXCollections.observableArrayList();
 
 
 
@@ -115,7 +120,20 @@ public class AdminController implements Initializable {
 
     }
 
-    public void searchFieldBtnAction(ActionEvent actionEvent) {}
+    public void searchFieldBtnAction(ActionEvent actionEvent) {
+         String value = searchField1.getText();
+        if (value.isEmpty()) {
+            return;
+        }
+
+        FilteredList<UserTm> filteredData = new FilteredList<>(observableList, row -> {
+            return row.getId().equalsIgnoreCase(value) || row.getName().equalsIgnoreCase(value) ||
+                    row.getRole().equalsIgnoreCase(value);
+        });
+
+        userTable.setItems(filteredData);
+    }
+
 
     public void updateBtnOnAction(ActionEvent actionEvent) {
 

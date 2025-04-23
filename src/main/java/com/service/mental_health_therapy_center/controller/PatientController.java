@@ -4,8 +4,10 @@ import com.service.mental_health_therapy_center.Bo.custom.Impl.PatientBoImpl;
 import com.service.mental_health_therapy_center.Bo.custom.PatientBo;
 import com.service.mental_health_therapy_center.dto.PatientDto;
 import com.service.mental_health_therapy_center.dto.PatientTm;
+import com.service.mental_health_therapy_center.dto.TherapySessionTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -43,7 +45,7 @@ public class PatientController implements Initializable {
     public TableColumn <PatientTm,String> colMedicalHistory;
 
     PatientBo patientBo = new PatientBoImpl();
-
+    ObservableList<PatientTm> observableList;
 
 
     private void configureTable() {
@@ -68,7 +70,7 @@ public class PatientController implements Initializable {
     public void loadTable()  {
 
         ArrayList<PatientDto> patientDtos = patientBo.loadTable();
-        ObservableList<PatientTm> observableList = FXCollections.observableArrayList();
+        observableList = FXCollections.observableArrayList();
 
 
 
@@ -92,11 +94,12 @@ public class PatientController implements Initializable {
     public void refresh(){
         loadTable();
         idField.setText(patientBo.getNextId());
-        nameField.setText("");
-        medHisField.setText("");
-        ageField.setText("");
-        contactNoField.setText("");
-        emailField.setText("");
+        nameField.clear();
+        medHisField.clear();
+        ageField.clear();
+        contactNoField.clear();
+        emailField.clear();
+        searchField.clear();
 
     }
 
@@ -298,5 +301,17 @@ public class PatientController implements Initializable {
     }
 
     public void searchFieldBtnAction(ActionEvent actionEvent) {
+         String value = searchField.getText();
+                if (value.isEmpty()) {
+                    return;
+                }
+
+                FilteredList<PatientTm> filteredData = new FilteredList<>(observableList, row -> {
+                    return row.getId().equalsIgnoreCase(value) || row.getName().equalsIgnoreCase(value) ||
+                            String.valueOf(row.getPhone()).equals(value);
+                });
+
+                patientTable.setItems(filteredData);
         }
 }
+

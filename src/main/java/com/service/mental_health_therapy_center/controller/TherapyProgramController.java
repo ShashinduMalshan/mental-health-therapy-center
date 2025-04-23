@@ -4,14 +4,12 @@ import com.service.mental_health_therapy_center.Bo.custom.Impl.TherapistBoImpl;
 import com.service.mental_health_therapy_center.Bo.custom.Impl.TherapyProgramBoImpl;
 import com.service.mental_health_therapy_center.Bo.custom.TherapistBo;
 import com.service.mental_health_therapy_center.Bo.custom.TherapyProgramBo;
-import com.service.mental_health_therapy_center.dto.TherapistDto;
-import com.service.mental_health_therapy_center.dto.TherapistTm;
-import com.service.mental_health_therapy_center.dto.TherapyProgramDto;
-import com.service.mental_health_therapy_center.dto.TherapyProgramTm;
+import com.service.mental_health_therapy_center.dto.*;
 import com.service.mental_health_therapy_center.entity.TherapyProgram;
 import jakarta.persistence.Id;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -43,6 +41,7 @@ public class TherapyProgramController implements Initializable {
     public TableColumn  <TherapyProgramTm ,String> colId;
 
     TherapyProgramBo therapyProgramBo = new TherapyProgramBoImpl();
+    ObservableList<TherapyProgramTm> observableList;
 
 
     private void configureTable() {
@@ -59,7 +58,7 @@ public class TherapyProgramController implements Initializable {
     public void loadTable()  {
 
         ArrayList<TherapyProgramDto> therapyProgramDtos = therapyProgramBo.loadTable();
-        ObservableList<TherapyProgramTm> observableList = FXCollections.observableArrayList();
+        observableList = FXCollections.observableArrayList();
 
 
 
@@ -81,6 +80,16 @@ public class TherapyProgramController implements Initializable {
 
 
     public void searchFieldBtnAction(ActionEvent actionEvent) {
+         String value = searchField.getText();
+                if (value.isEmpty()) {
+                    return;
+                }
+
+                FilteredList<TherapyProgramTm> filteredData = new FilteredList<>(observableList, row -> {
+                    return row.getId().equalsIgnoreCase(value) || row.getProGramName().equalsIgnoreCase(value);
+                });
+
+                therapyProgramTable.setItems(filteredData);
     }
 
     public void saveBtnOnAction(ActionEvent actionEvent) {
@@ -147,9 +156,10 @@ public class TherapyProgramController implements Initializable {
     public void refresh(){
         loadTable();
         IdField.setText(therapyProgramBo.getNextId());
-        nameField.setText("");
-        DurationField.setText("");
-        FeeField.setText("");
+        nameField.clear();
+        DurationField.clear();
+        FeeField.clear();
+        searchField.clear();
     }
 
 
