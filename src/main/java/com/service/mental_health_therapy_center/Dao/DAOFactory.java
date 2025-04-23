@@ -2,6 +2,7 @@ package com.service.mental_health_therapy_center.Dao;
 
 import com.service.mental_health_therapy_center.Dao.Custom.AdminDao;
 import com.service.mental_health_therapy_center.Dao.Custom.Impl.*;
+import com.service.mental_health_therapy_center.Dao.Custom.PaymentDao;
 import com.service.mental_health_therapy_center.Dao.Custom.TherapyProgramDao;
 
 public class DAOFactory {
@@ -16,7 +17,7 @@ public class DAOFactory {
     }
 
     public enum DAOType {
-        ADMIN,Login,Register,THERAPIST,PATIENT,THERAPISTPROGRAM,THERAPYSESSION
+        ADMIN,Login,Register,THERAPIST,PATIENT,THERAPISTPROGRAM,THERAPYSESSION,PAYMENT
 
 
 
@@ -56,6 +57,10 @@ public class DAOFactory {
 
             case THERAPYSESSION:
                 return new TherapySessionDaoImpl();
+
+            case PAYMENT:
+                return new PaymentDaoImpl();
+
             default:
                 return null;
 

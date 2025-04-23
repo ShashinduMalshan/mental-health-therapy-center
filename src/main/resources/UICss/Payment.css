@@ -1,0 +1,211 @@
+/* booking-styles.css */
+
+/* Main Application Styling */
+.root {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f5f7fa;
+}
+
+/* Container Styling */
+.main-container {
+    -fx-background-color: #f5f7fa;
+}
+
+.section-container {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 4);
+}
+
+.header-container {
+    -fx-background-color: #4a90e2;
+    -fx-background-radius: 8px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 4);
+}
+
+.payment-container {
+    -fx-background-color: #f1f8ff;
+    -fx-background-radius: 8px;
+    -fx-padding: 15px;
+    -fx-border-color: #bbd9ff;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+/* Text Styling */
+.header-title {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.section-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.field-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+.total-cost {
+    -fx-text-fill: #2c7be5;
+    -fx-font-weight: bold;
+}
+
+/* Control Styling */
+.styled-combo-box, .styled-text-field, .styled-date-picker, .styled-spinner {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5px;
+    -fx-border-color: #c8d0d8;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-padding: 5px;
+}
+
+.styled-combo-box:hover, .styled-text-field:hover, .styled-date-picker:hover, .styled-spinner:hover {
+    -fx-border-color: #4a90e2;
+}
+
+.styled-combo-box:focused, .styled-text-field:focused, .styled-date-picker:focused, .styled-spinner:focused {
+    -fx-border-color: #2c7be5;
+    -fx-effect: dropshadow(gaussian, rgba(74,144,226,0.2), 4, 0, 0, 0);
+}
+
+
+.text-field{
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+}
+
+/* Button Styling */
+.add-button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px 15px;
+}
+
+.add-button:hover {
+    -fx-background-color: #2c7be5;
+    -fx-cursor: hand;
+}
+
+.cancel-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 15px;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #e74c3c;
+    -fx-cursor: hand;
+}
+
+.book-pay-button {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-font-weight: bold;
+}
+
+.book-pay-button:hover {
+    -fx-background-color: #27ae60;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 1);
+}
+
+.pending-button {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-font-weight: bold;
+}
+
+.pending-button:hover {
+    -fx-background-color: #e67e0c;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 1);
+}
+
+/* Radio Button Styling for Program Selection */
+.program-option {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+    -fx-border-color: #eee;
+    -fx-border-radius: 5px;
+}
+
+.program-option:hover {
+    -fx-background-color: #e9f2ff;
+    -fx-border-color: #bbd9ff;
+}
+
+.program-option:selected {
+    -fx-background-color: #e3f0ff;
+    -fx-border-color: #4a90e2;
+}
+
+/* TableView Styling */
+.sessions-table {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+}
+
+.sessions-table .column-header {
+    -fx-background-color: #f1f8ff;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+    -fx-border-color: #ddd;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 8px;
+}
+
+.sessions-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: #f1f1f1;
+    -fx-border-width: 0 0 1 0;
+}
+
+.sessions-table .table-row-cell:odd {
+    -fx-background-color: #f9fbff;
+}
+
+.sessions-table .table-row-cell:selected {
+    -fx-background-color: #e3f0ff;
+    -fx-text-fill: #333;
+}
+
+/* Action buttons inside table */
+.edit-button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-background-radius: 3px;
+    -fx-padding: 3px 8px;
+}
+
+.delete-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-background-radius: 3px;
+    -fx-padding: 3px 8px;
+}

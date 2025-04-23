@@ -101,7 +101,7 @@ public class TherapistBoImpl implements TherapistBo {
     }
 
     public String getNextId(){
-        String id = therapySessionDao.getLastId() ;
+        String id = therapistDao.getLastId() ;
 
         if (id != null){
             String substring = id.substring(1);

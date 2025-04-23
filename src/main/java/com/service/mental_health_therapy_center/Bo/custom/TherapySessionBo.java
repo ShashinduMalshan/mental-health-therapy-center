@@ -7,7 +7,9 @@ import com.service.mental_health_therapy_center.dto.TherapySessionDto;
 import com.service.mental_health_therapy_center.entity.Patient;
 import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.TherapyProgram;
+import com.service.mental_health_therapy_center.entity.TherapySession;
 import javafx.collections.ObservableList;
+import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ public interface TherapySessionBo {
         List<Patient> getValueById(String Id);
         List<Therapist> getValueByTherapyProgram(TherapyProgram therapyProgram);
         boolean save(TherapySessionDto therapySessionDto);
+
         boolean update(TherapySessionDto therapySessionDto);
         String getNextId();
 

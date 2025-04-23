@@ -51,6 +51,8 @@ public class DashboardController {
 
     public void AppointmentsOnAction(MouseEvent mouseEvent) {navigateTo("/view/TherapySession.fxml");}
 
+    public void paymentOnAction(MouseEvent mouseEvent) {navigateTo("/view/Payment.fxml");}
+
     public void navigateTo(String fxmlPath) {
 
         try {

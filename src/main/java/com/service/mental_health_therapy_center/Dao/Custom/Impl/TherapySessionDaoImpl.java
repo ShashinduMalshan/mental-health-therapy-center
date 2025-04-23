@@ -67,5 +67,9 @@ public class TherapySessionDaoImpl implements TherapySessionDao {
     }
 
 
-
+    @Override
+    public boolean saveSession(Session session, TherapySession therapySession) {
+        session.persist(therapySession);
+         return true;
+    }
 }

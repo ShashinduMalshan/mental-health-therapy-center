@@ -15,6 +15,7 @@ import com.service.mental_health_therapy_center.entity.TherapyProgram;
 import com.service.mental_health_therapy_center.entity.TherapySession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Session;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -122,6 +123,8 @@ public class TherapySessionBoImpl implements TherapySessionBo {
         therapySessionDao.save(therapySession);
         return true;
     }
+
+
 
     @Override
     public boolean update(TherapySessionDto therapySessionDto) {

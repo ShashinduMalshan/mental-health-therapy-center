@@ -6,8 +6,9 @@ import lombok.*;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
-    @AllArgsConstructor
+@AllArgsConstructor
     @NoArgsConstructor
     @Getter
     @Setter
@@ -32,5 +33,9 @@ public class TherapySession {
     @JoinColumn(name = "therapistId")
     private Therapist therapist;
 
+    @ManyToOne
+    @JoinColumn(name = "payment_id")
+    private Payment payment;
 
-    }
+
+}

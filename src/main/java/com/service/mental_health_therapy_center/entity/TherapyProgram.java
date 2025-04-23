@@ -30,6 +30,9 @@ public class TherapyProgram {
     @OneToMany(mappedBy = "therapy_program")
     private List<Registration> registrations;
 
+    @OneToMany(mappedBy = "therapy_program")
+    private List<Payment> payments;
+
 
 
 }

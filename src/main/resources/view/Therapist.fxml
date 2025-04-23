@@ -27,7 +27,7 @@
                   <HBox alignment="CENTER_LEFT" maxWidth="Infinity" spacing="15">
                      <children>
                         <Label minWidth="100" styleClass="input-label" text="Therapist ID" />
-                        <TextField fx:id="idField" styleClass="futuristic-input" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="idField" editable="false" styleClass="futuristic-input" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxWidth="Infinity" spacing="15">

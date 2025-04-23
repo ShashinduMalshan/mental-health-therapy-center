@@ -30,7 +30,7 @@
                   <HBox alignment="CENTER_LEFT" maxWidth="Infinity" spacing="15">
                      <children>
                         <Label styleClass="input-label" text="Appointment ID" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="AppointmentID" styleClass="futuristic-input" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="AppointmentID" editable="false" styleClass="futuristic-input" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="Infinity" spacing="15">

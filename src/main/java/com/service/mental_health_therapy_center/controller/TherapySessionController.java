@@ -9,6 +9,7 @@ import com.service.mental_health_therapy_center.dto.*;
 import com.service.mental_health_therapy_center.entity.Patient;
 import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.TherapyProgram;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,13 +58,24 @@ public class TherapySessionController implements Initializable {
     private void configureTable() {
 
         colId.setCellValueFactory(new PropertyValueFactory<>("sessionId"));
-        colPatient.setCellValueFactory(new PropertyValueFactory<>("patient"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        colProgram.setCellValueFactory(new PropertyValueFactory<>("therapyProgram"));
-        colTherapist.setCellValueFactory(new PropertyValueFactory<>("therapyProgram"));
+        colProgram.setCellValueFactory(cellData -> {
+            TherapyProgram program = cellData.getValue().getTherapyProgram();
+            return new ReadOnlyStringWrapper(program != null ? program.getProGramName() : "No Program");
+        });
+        colPatient.setCellValueFactory(cellData  -> {
+            Patient patient = cellData.getValue().getPatient();
+            return new ReadOnlyStringWrapper(patient != null ? patient.getName():"No Patient");
+        });
+        colTherapist.setCellValueFactory(cellData -> {
+            Therapist therapist = cellData.getValue().getTherapist();
+            return new ReadOnlyStringWrapper(therapist != null ? therapist.getName() : "No Therapist");
+        });
+
+
 
 
         colStatus.setCellFactory(Column -> new TableCell<TherapySessionTm, String>() {
@@ -465,8 +477,6 @@ public class TherapySessionController implements Initializable {
 
     }
 
-    String selected;
-    String selectedId;
     public void loadPatient() {
 
             ObservableList<PatientTm> patient = therapySessionBo.loadTherapyPatient();
@@ -492,7 +502,7 @@ public class TherapySessionController implements Initializable {
         SpinnerValueFactory<Integer> hourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(9, 22, 9);
         hours.setValueFactory(hourFactory);
 
-        SpinnerValueFactory<Integer> minuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0, 15);
+        SpinnerValueFactory<Integer> minuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0, 5);
         minutes.setValueFactory(minuteFactory);
 
         loadPrograms();
