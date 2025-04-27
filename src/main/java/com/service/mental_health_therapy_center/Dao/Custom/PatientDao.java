@@ -9,6 +9,8 @@ import java.util.List;
 public interface PatientDao extends CrudDao<Patient>{
 
     List<Patient> getValueById(String id);
+    int patentCount();
+
 
 
 

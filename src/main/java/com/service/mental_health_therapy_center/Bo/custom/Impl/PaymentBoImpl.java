@@ -82,12 +82,6 @@ public class PaymentBoImpl implements PaymentBo {
          return observableList;
     }
 
-    @Override
-    public ArrayList<Payment> getAll() {
-        return null;
-    }
-
-
 
     @Override
     public ObservableList<PatientTm> loadTherapyPatient() {
@@ -211,5 +205,18 @@ public class PaymentBoImpl implements PaymentBo {
             return String.format("P%03d", newIdIndex);
         }
         return "P001";
+    }
+
+    @Override
+    public List<PaymentTm> getAllPayment() {
+        List<PaymentTm> all = paymentDao.getAllPatentCount();
+
+        return all;
+    }
+
+    @Override
+    public List<PaymentHistory> financialHistoryByMonth() {
+        return paymentDao.financialHistoryByMonth();
+
     }
 }

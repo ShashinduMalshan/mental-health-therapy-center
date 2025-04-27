@@ -1,10 +1,9 @@
 package com.service.mental_health_therapy_center.Dao.Custom.Impl;
 
-import com.service.mental_health_therapy_center.Dao.CrudDao;
 import com.service.mental_health_therapy_center.Dao.Custom.PatientDao;
 import com.service.mental_health_therapy_center.configuration.FactoryConfiguration;
+import com.service.mental_health_therapy_center.dto.PaymentDto;
 import com.service.mental_health_therapy_center.entity.Patient;
-import com.service.mental_health_therapy_center.entity.Therapist;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -85,5 +84,21 @@ public class PatientDaoImpl implements PatientDao {
             session.close();
         }
         return patientList;
+    }
+    public int patentCount(){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        int count;
+
+        try {
+            Query<Long> query = session.createQuery("SELECT COUNT(p) FROM Patient p", Long.class);
+            Long result = query.getSingleResult();
+            count = result.intValue();
+        } finally {
+            session.close();
+        }
+
+        return count;
+
+
     }
 }

@@ -15,6 +15,8 @@ public interface PatientBo {
     boolean update(PatientDto patientDto);
     boolean delete(String Id);
     String getNextId();
+    int patentCount();
+
 
 
 }

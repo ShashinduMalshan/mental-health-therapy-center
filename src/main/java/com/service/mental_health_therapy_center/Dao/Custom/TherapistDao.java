@@ -12,6 +12,8 @@ import java.util.List;
 public interface TherapistDao extends CrudDao<Therapist> {
 
         List<Therapist> getValueByTherapyProgram(TherapyProgram therapyProgram);
+        int therapistCount();
+
 
 
 }

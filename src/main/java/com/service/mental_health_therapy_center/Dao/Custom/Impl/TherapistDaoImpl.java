@@ -4,7 +4,6 @@ import com.service.mental_health_therapy_center.Dao.Custom.TherapistDao;
 import com.service.mental_health_therapy_center.configuration.FactoryConfiguration;
 import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.TherapyProgram;
-import com.service.mental_health_therapy_center.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -95,6 +94,24 @@ public class TherapistDaoImpl implements TherapistDao {
             }
 
             return therapistList;
+
+
+    }
+
+
+    public int therapistCount(){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        int count;
+
+        try {
+            Query<Long> query = session.createQuery("SELECT COUNT(t) FROM Therapist t", Long.class);
+            Long result = query.getSingleResult();
+            count = result.intValue();
+        } finally {
+            session.close();
+        }
+
+        return count;
 
 
     }

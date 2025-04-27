@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="invoicePane" prefHeight="878.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.service.mental_health_therapy_center.controller.InvoiceController">
+    <children>
+        <!-- Header Section -->
+        <VBox styleClass="header-section" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <children>
+                        <VBox prefHeight="128.0" prefWidth="397.0" spacing="5.0">
+                            <children>
+                                <Label fx:id="businessNameLabel" prefHeight="35.0" prefWidth="403.0" styleClass="business-name" text="Mental Health Therapy Center" />
+                                <Label fx:id="businessAddressLabel" styleClass="business-address" text="Sri Lanka" />
+                                <Label fx:id="businessContactLabel" styleClass="business-contact" text="Australia" />
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <VBox alignment="TOP_RIGHT" prefHeight="128.0" prefWidth="393.0" spacing="5.0">
+                            <children>
+                                <Label styleClass="invoice-title" text="Invoice" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Invoice Info Section -->
+        <GridPane layoutY="100.0" styleClass="invoice-info-section" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <GridPane styleClass="invoice-details">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label styleClass="info-label" text="INVOICE NO." />
+                        <Label styleClass="info-label" text="REFERENCE" GridPane.rowIndex="1" />
+                        <Label fx:id="invoiceNumberLabel" styleClass="info-value" text="INV-001" GridPane.columnIndex="1" />
+                        <Label fx:id="referenceLabel" styleClass="info-value" text="REF-001" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    </children>
+                </GridPane>
+                <GridPane GridPane.columnIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label styleClass="info-label" text="ISSUE DATE" />
+                        <Label styleClass="info-label" text="DUE DATE" GridPane.rowIndex="1" />
+                        <Label fx:id="issueDateLabel" styleClass="info-value" text="23/04/2025" GridPane.columnIndex="1" />
+                        <Label fx:id="dueDateLabel" styleClass="info-value" text="07/05/2025" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    </children>
+                </GridPane>
+            </children>
+        </GridPane>
+
+        <!-- Content Section with Patient and Program Info -->
+        <HBox fx:id="contentHbox" layoutX="7.0" layoutY="258.0" prefHeight="200.0" prefWidth="845.0" spacing="10.0" styleClass="content-section">
+            <children>
+                <!-- Left Side - Patient Info -->
+                <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0" styleClass="patient-info-box">
+                    <children>
+                        <Label styleClass="section-header" text="Patient Information" />
+                        <GridPane vgap="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label styleClass="content-label" text="Payment ID:" />
+                                <Label styleClass="content-label" text="Patient Name:" GridPane.rowIndex="1" />
+                                <Label fx:id="paymentIdLabel" styleClass="content-value" text="PAY-001" GridPane.columnIndex="1" />
+                                <Label fx:id="patientNameLabel" styleClass="content-value" text="John Doe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            </children>
+                        </GridPane>
+                    </children>
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                    </padding>
+                </VBox>
+
+                <!-- Right Side - Program Info -->
+                <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0" styleClass="program-info-box">
+                    <children>
+                        <Label styleClass="section-header" text="Program Information" />
+                        <GridPane vgap="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label styleClass="content-label" text="Therapy Program:" GridPane.rowIndex="1" />
+                                <Label styleClass="content-label" text="Program ID:" />
+                                <Label fx:id="therapyProgramLabel" styleClass="content-value" text="Cognitive Behavioral Therapy" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="programIdLabel" styleClass="content-value" text="PROG-001" GridPane.columnIndex="1" />
+                        <Label layoutX="10.0" layoutY="10.0" styleClass="content-label" text="Therapist:" GridPane.rowIndex="2" />
+                        <Label fx:id="therapistIdLable" layoutX="161.0" layoutY="10.0" styleClass="content-value" text="Kaml Gunarathne" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            </children>
+                        </GridPane>
+                    </children>
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                    </padding>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </HBox>
+
+        <!-- Total Due Box -->
+        <VBox layoutX="741.0" layoutY="538.0" styleClass="total-due-box" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="538.0">
+            <children>
+                <Label styleClass="total-due-label" text="Total due" />
+                <Label fx:id="totalDueAmountLabel" styleClass="total-due-amount" text="\$0.00" />
+            </children>
+        </VBox>
+
+        <!-- Totals Section -->
+        <VBox layoutX="603.0" layoutY="625.0" spacing="10.0" styleClass="totals-section" AnchorPane.rightAnchor="1.0">
+            <children>
+                <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                    <children>
+                        <Label styleClass="paid-label" text="Amount Paid:" />
+                        <Label fx:id="amountPaidLabel" styleClass="paid-amount" text="\$0.00" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                    <children>
+                        <Label styleClass="due-label" text="Balance Due:" />
+                        <Label fx:id="balanceDueLabel" styleClass="due-amount" text="\$0.00" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Terms and Conditions -->
+        <VBox layoutX="7.0" layoutY="628.0" styleClass="terms-section" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="628.0">
+            <children>
+                <Label styleClass="terms-header" text="TERMS &amp; CONDITIONS" />
+                <Label styleClass="terms-text" text="Payment is due within 15 days" />
+                <Label styleClass="terms-text" text="Please make checks payable to: Mental Health Therapy Center" />
+            </children>
+        </VBox>
+
+        <!-- Action Buttons -->
+        <HBox alignment="CENTER" layoutY="650.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Button fx:id="printButton" mnemonicParsing="false" onAction="#printButtonAction" styleClass="action-button" text="Print Invoice" />
+                <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButtonAction" styleClass="action-button" text="Save PDF" />
+                <Button fx:id="emailButton" mnemonicParsing="false" onAction="#emailButtonAction" styleClass="action-button" text="Email Invoice" />
+                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" styleClass="action-button" text="Close" />
+            </children>
+        </HBox>
+    </children>
+   <stylesheets>
+      <URL value="@../UICss/invoice.css" />
+   </stylesheets>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>

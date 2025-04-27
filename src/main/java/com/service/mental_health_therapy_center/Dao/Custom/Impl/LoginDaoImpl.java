@@ -3,7 +3,7 @@ package com.service.mental_health_therapy_center.Dao.Custom.Impl;
 import com.service.mental_health_therapy_center.Dao.Custom.LoginDao;
 import com.service.mental_health_therapy_center.configuration.FactoryConfiguration;
 import com.service.mental_health_therapy_center.dto.LoginDto;
-import com.service.mental_health_therapy_center.entity.Therapist;
+import com.service.mental_health_therapy_center.dto.PaymentDto;
 import com.service.mental_health_therapy_center.entity.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;

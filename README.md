@@ -151,3 +151,8 @@ The system implements comprehensive validation for all input fields:
 
 © 2025 All rights reserved. This project is proprietary software developed by
 Shasidu Malshan.
+
+## Contact
+
+For any inquiries or support, please contact:
+- Email: shasidumalshan@gmail.com

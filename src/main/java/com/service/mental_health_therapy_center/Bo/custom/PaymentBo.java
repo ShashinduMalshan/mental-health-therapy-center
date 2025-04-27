@@ -2,7 +2,6 @@ package com.service.mental_health_therapy_center.Bo.custom;
 
 import com.service.mental_health_therapy_center.dto.*;
 import com.service.mental_health_therapy_center.entity.Patient;
-import com.service.mental_health_therapy_center.entity.Payment;
 import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.TherapyProgram;
 import javafx.collections.ObservableList;
@@ -14,7 +13,6 @@ public interface PaymentBo {
 
     ObservableList<TherapyProgramTm> loadTherapyProgram();
 
-    ArrayList<Payment> getAll();
 
 
     double getalreadyPaid(String therapyProgramId , String patientId);
@@ -26,4 +24,7 @@ public interface PaymentBo {
     boolean save(PaymentDto paymentDto, ArrayList<SessionPaymentDto> therapySessionDtos);
     List<Therapist> getValueByTherapyProgram(TherapyProgram therapyProgram);
     String getNextId();
+    List<PaymentTm> getAllPayment();
+    List<PaymentHistory> financialHistoryByMonth();
+
 }

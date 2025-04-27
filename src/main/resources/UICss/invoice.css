@@ -1,0 +1,199 @@
+/* Global Styles */
+.root {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-background-color: white;
+}
+
+/* Header Section */
+.header-section {
+    -fx-background-color: #455a64;
+    -fx-padding: 15px;
+}
+
+.business-name {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.business-address, .business-contact {
+    -fx-font-size: 12px;
+    -fx-text-fill: #e0e0e0;
+}
+
+.invoice-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.tax-invoice {
+    -fx-font-size: 12px;
+    -fx-text-fill: #e0e0e0;
+}
+
+.business-phone, .business-email, .business-website {
+    -fx-font-size: 12px;
+    -fx-text-fill: #e0e0e0;
+}
+
+/* Invoice Info Section */
+.invoice-info-section {
+    -fx-background-color: #37474f;
+    -fx-padding: 10px 20px;
+}
+
+.info-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #90a4ae;
+}
+
+.info-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-text-fill: white;
+}
+
+/* From/To Section */
+.from-to-section {
+    -fx-padding: 20px;
+    -fx-background-color: #f5f5f5;
+}
+
+.section-header {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7b7b7b;
+}
+
+.from-to-value {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* Total Due Box */
+.total-due-box {
+    -fx-padding: 15px;
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+.total-due-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+.total-due-amount {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1976d2;
+}
+
+/* Services Table */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 10px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+.table-view .table-cell {
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: white;
+}
+
+/* Totals Section */
+.totals-section {
+    -fx-padding: 15px 20px;
+}
+
+.subtotal-label, .paid-label, .due-label, .total-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+.subtotal-amount, .paid-amount, .due-amount {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-min-width: 100px;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.total-amount {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1976d2;
+    -fx-min-width: 100px;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+/* Signature Section */
+.signature-section {
+    -fx-padding: 10px 20px;
+}
+
+.signature-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #555555;
+}
+
+.signature-image {
+    -fx-font-size: 24px;
+    -fx-font-style: italic;
+    -fx-padding: 10px 0;
+}
+
+/* Terms and Conditions */
+.terms-section {
+    -fx-padding: 10px 20px;
+}
+
+.terms-header {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+.terms-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #777777;
+}
+
+/* Action Buttons */
+.action-button {
+    -fx-background-color: #5c6bc0;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-cursor: hand;
+    -fx-background-radius: 4px;
+}
+
+.action-button:hover {
+    -fx-background-color: #3f51b5;
+}
+
+.action-button:pressed {
+    -fx-background-color: #303f9f;
+}

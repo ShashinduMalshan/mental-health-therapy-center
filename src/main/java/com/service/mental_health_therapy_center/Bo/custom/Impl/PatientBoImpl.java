@@ -82,6 +82,10 @@ public class PatientBoImpl implements PatientBo {
         return "P001";
     }
 
+    @Override
+    public int patentCount() {
+        return patientDao.patentCount();
+    }
 
 
 }

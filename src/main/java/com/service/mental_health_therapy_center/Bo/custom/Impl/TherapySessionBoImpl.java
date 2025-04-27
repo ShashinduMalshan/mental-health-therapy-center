@@ -6,9 +6,7 @@ import com.service.mental_health_therapy_center.Dao.Custom.TherapistDao;
 import com.service.mental_health_therapy_center.Dao.Custom.TherapyProgramDao;
 import com.service.mental_health_therapy_center.Dao.Custom.TherapySessionDao;
 import com.service.mental_health_therapy_center.Dao.DAOFactory;
-import com.service.mental_health_therapy_center.dto.PatientTm;
-import com.service.mental_health_therapy_center.dto.TherapyProgramTm;
-import com.service.mental_health_therapy_center.dto.TherapySessionDto;
+import com.service.mental_health_therapy_center.dto.*;
 import com.service.mental_health_therapy_center.entity.Patient;
 import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.TherapyProgram;
@@ -151,4 +149,14 @@ public class TherapySessionBoImpl implements TherapySessionBo {
         }
         return "S001";
     }
+
+    @Override
+    public List<TopRateTherapistDto> topRateTherapist() {
+        return therapySessionDao.topRateTherapist();
+
+    }
+
+    public List<DateDto> MostChosenTherapyProgram(){
+        return therapySessionDao.MostChosenTherapyProgram();
+     }
 }

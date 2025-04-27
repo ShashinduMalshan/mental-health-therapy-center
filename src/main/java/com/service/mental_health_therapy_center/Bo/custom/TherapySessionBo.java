@@ -1,9 +1,6 @@
 package com.service.mental_health_therapy_center.Bo.custom;
 
-import com.service.mental_health_therapy_center.dto.PatientTm;
-import com.service.mental_health_therapy_center.dto.TherapistDto;
-import com.service.mental_health_therapy_center.dto.TherapyProgramTm;
-import com.service.mental_health_therapy_center.dto.TherapySessionDto;
+import com.service.mental_health_therapy_center.dto.*;
 import com.service.mental_health_therapy_center.entity.Patient;
 import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.TherapyProgram;
@@ -23,9 +20,11 @@ public interface TherapySessionBo {
         List<Patient> getValueById(String Id);
         List<Therapist> getValueByTherapyProgram(TherapyProgram therapyProgram);
         boolean save(TherapySessionDto therapySessionDto);
-
+        List<DateDto> MostChosenTherapyProgram();
         boolean update(TherapySessionDto therapySessionDto);
         String getNextId();
+        List<TopRateTherapistDto> topRateTherapist();
+
 
 
 }

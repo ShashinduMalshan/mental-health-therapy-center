@@ -14,5 +14,7 @@ public interface TherapistBo {
     boolean delete(String Id);
     String getNextId();
     ObservableList<TherapyProgramTm> loadTherapyProgram();
+    int therapistCount();
+
 
 }

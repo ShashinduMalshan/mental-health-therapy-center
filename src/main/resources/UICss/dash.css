@@ -1,0 +1,258 @@
+/* Main container styles */
+
+.main-container {
+    -fx-background-color: #f5f6fa;
+    -fx-padding: 20px;
+}
+
+/* Top section styles */
+.top-section {
+    -fx-alignment: center-left;
+}
+
+.stats-card {
+    -fx-background-color: white;
+    -fx-padding: 15px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+
+.stats-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #707070;
+    -fx-padding: 0 0 10px 0;
+}
+
+.stats-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Line Chart styles */
+.top-line-chart {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: #f0f0f0;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #f0f0f0;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 2px;
+}
+
+/* Area Chart styles */
+.area-chart-card {
+    -fx-background-color: white;
+    -fx-padding: 15px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+
+.area-chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 10px 0;
+}
+
+.area-chart {
+    -fx-padding: 10px;
+}
+
+.area-chart .chart-series-area-fill {
+    -fx-opacity: 0.15;
+}
+
+
+
+.area-chart .chart-series-area-line {
+    -fx-stroke-width: 2px;
+}
+
+/* Bar Chart styles */
+.bar-chart-card {
+    -fx-background-color: white;
+    -fx-padding: 15px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+
+.bar-chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 10px 0;
+}
+
+.bar-chart .chart-bar {
+    -fx-background-insets: 0;
+    -fx-background-radius: 3px 3px 0 0;
+}
+
+/* Progress Bar section styles */
+.progress-bar-container {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-background-radius: 10px;
+    -fx-min-width: 250px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+
+.progress-item {
+    -fx-spacing: 5px;
+}
+
+.progress-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #707070;
+}
+
+.progress-value {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4f83f1;
+    -fx-font-weight: bold;
+}
+
+.custom-progress-bar {
+    -fx-pref-height: 8px;
+    -fx-min-width: 150px;
+}
+
+.custom-progress-bar .bar {
+    -fx-background-color: #4f83f1;
+    -fx-background-radius: 4px;
+    -fx-background-insets: 0;
+}
+
+.custom-progress-bar .track {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 4px;
+    -fx-background-insets: 0;
+}
+
+/* Chart Axis styles */
+.axis {
+    -fx-tick-label-fill: #707070;
+    -fx-tick-length: 3;
+    -fx-minor-tick-length: 0;
+}
+
+.axis-label {
+    -fx-text-fill: #707070;
+}
+
+/* Default chart colors */
+.default-color0.chart-series-line { -fx-stroke: #4f83f1; }
+.default-color1.chart-series-line { -fx-stroke: #2ecc71; }
+.default-color2.chart-series-line { -fx-stroke: #e74c3c; }
+
+.default-color0.chart-series-area-fill {
+    -fx-fill: rgba(79, 131, 241, 0.3); /* 0.3 for 30% opacity */
+}
+.default-color2.chart-series-area-fill { -fx-fill: #e74c3c; }
+
+.default-color0.chart-bar { -fx-background-color: #4f83f1; }
+.default-color1.chart-bar { -fx-background-color: #2ecc71; }
+.default-color2.chart-bar { -fx-background-color: #e74c3c; }
+/* Donut Charts Section Styles */
+.donut-charts-container {
+    -fx-background-color: transparent;
+    -fx-padding: 20px 0;
+}
+
+
+.donut-chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.donut-chart-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+    -fx-padding: 0 0 10px 0;
+}
+
+.donut-chart {
+    -fx-pie-label-visible: false;
+    -fx-start-angle: 90;
+}
+
+.donut-chart .chart-content {
+    -fx-padding: 10px;
+}
+
+.donut-chart .default-color0 {
+    -fx-pie-color: #4ade80;  /* Green for "New" */
+}
+
+.donut-chart .default-color1 {
+    -fx-pie-color: #3b82f6;  /* Blue for "Returning/Recurring/Direct" */
+}
+.donut-chart {
+    -fx-pie-inner-circle: transparent;
+    -fx-pie-inner-radius: 30%; /* Adjust this for the size of the hole */
+}
+
+
+.donut-chart-card {
+    -fx-background-color: white;
+    -fx-padding: 15px;
+    -fx-background-radius: 10px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+#financialHistoryReport {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+#financialHistoryReport:hover {
+    -fx-background-color: #2980b9;
+    -fx-translate-y: -1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 7, 0, 0, 3);
+}
+
+#financialHistoryReport:pressed {
+    -fx-background-color: #1f6aa5;
+    -fx-translate-y: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}/* Header Styles */
+
+.dashboard-header {
+    -fx-background-color: linear-gradient(to right, #4a90e2, #74b1ff);
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+.header-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+}
+
+.header-subtitle {
+    -fx-text-fill: #E0E0E0;
+    -fx-font-size: 14px;
+}
+
+.date-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}

@@ -28,29 +28,34 @@
                 <!-- Navigation Buttons -->
                 <VBox spacing="10" VBox.vgrow="ALWAYS">
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button styleClass="nav-button, active" text="Dashboard">
+                        <Button fx:id="dashboardButton" styleClass="nav-button, active" text="Dashboard">
                             <font>
                                 <Font name="System Bold Italic" size="13.0" />
                             </font>
                         </Button>
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button onMouseClicked="#PatientsOnAction" styleClass="nav-button" text="Patients" />
+                        <Button fx:id="patientsButton" onMouseClicked="#PatientsOnAction" styleClass="nav-button" text="Patients" />
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button onMouseClicked="#AppointmentsOnAction" styleClass="nav-button" text="Appointments" />
+                        <Button fx:id="appointmentsButton" onMouseClicked="#AppointmentsOnAction" styleClass="nav-button" text="Appointments" />
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button onMouseClicked="#therapistsBtnOnAction" styleClass="nav-button" text="Therapists" />
+                        <Button fx:id="therapistsButton" onMouseClicked="#therapistsBtnOnAction" styleClass="nav-button" text="Therapists" />
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button onMouseClicked="#treatmentPlanOnAction" styleClass="nav-button" text="Treatment Plans" />
+                        <Button fx:id="treatmentPlansButton" onMouseClicked="#treatmentPlanOnAction" styleClass="nav-button" text="Treatment Plans" />
                     </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button onMouseClicked="#paymentOnAction" styleClass="nav-button" text="Payment" />
+                        <Button fx:id="paymentButton" onMouseClicked="#paymentOnAction" styleClass="nav-button" text="Payment" />
                     </HBox>
+               <HBox alignment="CENTER" layoutX="10.0" layoutY="320.0" styleClass="nav-button-container">
+                  <children>
+                     <Button fx:id="performanceAnalyticsButton" onMouseClicked="#PerformanceAnalyticsOnAction" styleClass="nav-button" text="Performance Analytics" />
+                  </children>
+               </HBox>
                     <HBox alignment="CENTER" styleClass="nav-button-container">
-                        <Button onMouseClicked="#adminBtnOnAction" styleClass="nav-button" text="Admin" />
+                        <Button fx:id="adminButton" onMouseClicked="#adminBtnOnAction" styleClass="nav-button" text="Admin" />
                     </HBox>
                <HBox alignment="CENTER" layoutX="10.0" layoutY="382.0" styleClass="nav-button-container">
                   <children>

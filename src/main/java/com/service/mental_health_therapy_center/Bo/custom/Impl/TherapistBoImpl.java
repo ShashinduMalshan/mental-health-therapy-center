@@ -65,6 +65,11 @@ public class TherapistBoImpl implements TherapistBo {
     }
 
     @Override
+    public int therapistCount() {
+        return therapistDao.therapistCount();
+    }
+
+    @Override
     public boolean save(TherapistDto therapistDto) {
 
         therapist.setId(therapistDto.getId());

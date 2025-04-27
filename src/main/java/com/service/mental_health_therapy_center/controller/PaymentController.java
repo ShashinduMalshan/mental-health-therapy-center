@@ -8,6 +8,7 @@ import com.service.mental_health_therapy_center.Exceptions.PaymentProcessingExce
 import com.service.mental_health_therapy_center.Exceptions.SchedulingConflictException;
 import com.service.mental_health_therapy_center.dto.*;
 import com.service.mental_health_therapy_center.entity.Patient;
+import com.service.mental_health_therapy_center.entity.Payment;
 import com.service.mental_health_therapy_center.entity.Therapist;
 import com.service.mental_health_therapy_center.entity.TherapyProgram;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -15,10 +16,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -61,7 +66,6 @@ public class PaymentController implements Initializable {
     public TextField AmountField;
     public TextField dueAmountFeild;
     public TextField balnceField;
-    public Button checkButton;
     public Button invoiceButton;
 
     Map<String, String> patientMap = new HashMap<>();
@@ -73,6 +77,7 @@ public class PaymentController implements Initializable {
     private final ObservableList<CartTM> cartTMS = FXCollections.observableArrayList();
     double enteredAmount = 0;
     double payment = 0;
+    double dueAmount;
 
 
     private void configureTable() {
@@ -204,34 +209,12 @@ public class PaymentController implements Initializable {
         Therapist therapist = TherapistValue.get(0);
 
 
-//            boolean isAlreadyAdded = cartTMS.stream()
-//                    .anyMatch(cart -> cart.getSessionId().equals(sessionID));
-//
-//            if (isAlreadyAdded) {
-//                new Alert(Alert.AlertType.WARNING, "This session already exists.").show();
-//                return;
-//            }
 
-        double dueAmount = therapyProgram.getCost() - paymentBo.getalreadyPaid(programId, patientId);
+
+        dueAmount = therapyProgram.getCost() - paymentBo.getalreadyPaid(programId, patientId);
         dueAmountFeild.setText(String.valueOf(dueAmount));
 
-        boolean isValidAmount = AmountField.getText().matches("^\\d*\\.?\\d+$");
 
-        if (!isValidAmount) {
-            new Alert(Alert.AlertType.ERROR, "Amount entered is invalid.").show();
-            AmountField.setStyle("-fx-border-color: red;");
-            return;
-        }
-        AmountField.setStyle(AmountField.getStyle() + ";-fx-border-color: #7367F0;");
-        enteredAmount = Double.parseDouble(AmountField.getText());
-
-        if (enteredAmount > dueAmount) {
-            payment = dueAmount;
-            balnceField.setText(String.valueOf(enteredAmount - dueAmount));
-        } else {
-            payment = enteredAmount;
-            balnceField.setText(String.valueOf(0));
-        }
 
 
         Button btn = new Button("Remove");
@@ -258,6 +241,7 @@ public class PaymentController implements Initializable {
 
     public void clearAllButtonAction(ActionEvent actionEvent) {
         sessionsTableView.getItems().clear();
+        clearField();
     }
 
     public void pendingButtonAction(ActionEvent actionEvent) {
@@ -388,6 +372,28 @@ public class PaymentController implements Initializable {
         }
         Therapist therapist = TherapistValue.get(0);
 
+        boolean isValidAmount = AmountField.getText().matches("^\\d*\\.?\\d+$");
+
+        if (dueAmount!=0&&!isValidAmount) {
+            new Alert(Alert.AlertType.ERROR, "Amount entered is invalid.").show();
+            AmountField.setStyle("-fx-border-color: red;");
+            return;
+        }
+
+        AmountField.setStyle(AmountField.getStyle() + ";-fx-border-color: #7367F0;");
+
+        if (dueAmount!=0) {
+            enteredAmount = Double.parseDouble(AmountField.getText());
+        }
+
+        if (dueAmount!=0 && enteredAmount > dueAmount) {
+            payment = dueAmount;
+            balnceField.setText(String.valueOf(enteredAmount - dueAmount));
+        } else {
+            payment = enteredAmount;
+            balnceField.setText(String.valueOf(0));
+        }
+
 
         PaymentDto paymentDto = new PaymentDto(
                 paymentId,
@@ -427,7 +433,6 @@ public class PaymentController implements Initializable {
         } else {
             throw new PaymentProcessingException("Payment failed!");
         }
-        clearField();
 
 
     }
@@ -482,6 +487,7 @@ public class PaymentController implements Initializable {
         AmountField.clear();
         dueAmountFeild.clear();
         balnceField.clear();
+        PlanCostField.clear();
     }
 
     public void refresh() {
@@ -536,34 +542,43 @@ public class PaymentController implements Initializable {
 
     }
 
-    public void invoiceButtonAction(ActionEvent actionEvent) {
+    public void invoiceButtonAction(ActionEvent actionEvent) throws IOException {
 
-        if (patientComboBox.getValue() == null||therapistNameField.getText().isEmpty()||AmountField==null||AmountField.getText().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please fill all the fields!").show();
+        double amount = AmountField.getText().isEmpty() ? 0.0 : Double.parseDouble(AmountField.getText());
+        double balanceDue = balnceField.getText().isEmpty() ? 0.0 : Double.parseDouble(balnceField.getText());
+        String patientId = patientIdField.getText().isEmpty() ? "Unknown" : patientIdField.getText();
+        String patientName = (patientComboBox.getValue() == null) ? "Unknown" : patientComboBox.getValue();
+        String programId = planIdField.getText().isEmpty() ? "Unknown" : planIdField.getText();
+        String programName = (planComboBox.getValue() == null) ? "Unknown" : planComboBox.getValue();
+        String therapistName = therapistNameField.getText().isEmpty() ? "Unknown" : therapistNameField.getText();
 
-            return;
-        }
 
-        try {
-            JasperReport jasperReport = JasperCompileManager.compileReport(
-                    getClass().getResourceAsStream("/Report/PaymentInvoice.jrxml"));
+        InvoiceDto invoiceDto = new InvoiceDto(
+                amount,
+                balanceDue,
+                dueAmount,
+                patientId,
+                patientName,
+                programId,
+                programName,
+                therapistName
+        );
 
-            Map<String, Object> parameters = new HashMap<>();
-            parameters.put("PatientName", patientComboBox.getValue());
-            parameters.put("therapistName", therapistNameField.getText());
-            parameters.put("P_Date", LocalDate.now().toString());
-            parameters.put("DueAmount" ,dueAmountFeild.getText());
-            parameters.put("Time", LocalTime.now().toString());
-            parameters.put("Amount", AmountField.getText());
-            parameters.put("Balance", balnceField.getText());
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/PaymentInvoice.fxml"));
+        Parent root = loader.load();
+        InvoiceController invoiceController = loader.getController();
+        invoiceController.setValue(invoiceDto);
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
 
-            System.out.println(jasperPrint);
-            JasperViewer.viewReport(jasperPrint, false);
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Fail to generate report...!").show();
-        }
+        stage.setScene(scene);
+        stage.setTitle("Payment Invoice");
+        stage.setWidth(853);
+        stage.setHeight(900);
+        stage.setResizable(false);
+        stage.show();
+
     }
+
 }
