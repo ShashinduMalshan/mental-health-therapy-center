@@ -101,7 +101,7 @@ The application uses Hibernate to automatically create and update the database s
 hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver
 hibernate.connection.url=jdbc:mysql://localhost:3306/mental_health_therapy_center?createDatabaseIfNotExist=true
 hibernate.connection.username=root
-hibernate.connection.password=Ijse@1234
+hibernate.connection.password=********
 hibernate.dialect=org.hibernate.dialect.MySQLDialect
 hibernate.show_sql=true
 hibernate.hbm2ddl.auto=update
